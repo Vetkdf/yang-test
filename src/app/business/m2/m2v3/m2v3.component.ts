@@ -160,10 +160,3 @@ export class M2v3Component implements OnInit {
   }
 
 }
-
-
-/*
-<template wjFlexGridCellTemplate [cellType]="'Cell'">
-    文字模板
-</template>
-*/
