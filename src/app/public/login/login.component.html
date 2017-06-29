@@ -1,0 +1,55 @@
+<div class="login-box" style="background-color:#ADADAD;">
+  <div class="login-logo">
+    <b>Angular4 App</b> by LTE
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body" style="border:9px solid #ADADAD;">
+    <p class="login-box-msg"><b>登录系统</b></p>
+
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+      <div class="form-group has-feedback">
+        <input type="text"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+        #usernameRef="ngModel"
+        name="username"
+        class="form-control" placeholder="用户名">
+        <span class="glyphicon glyphicon-envelope form-control-feedback">
+        </span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password"
+        [(ngModel)]="password"
+        required
+        #passwordRef="ngModel"
+        name="password"
+        class="form-control"
+        placeholder="密码">
+        <span class="glyphicon glyphicon-lock form-control-feedback">
+
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <div style="color:red" *ngIf="auth?.hasError"><b>
+              {{auth.errMsg}}</b></div>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+
+<div class="login-box" style="font-size:20px;">
+ 用户名：aaa
+ <br/>密码：000000
+</div>

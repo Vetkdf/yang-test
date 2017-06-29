@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <app-top></app-top>
+  <app-treeview treemodule="M2" treeitem="V1" ></app-treeview>
+  <div class="content-wrapper">
+    <app-navigation Showtitle="获取远程数据列表" Subtitle="每页都使用远程数据" Web="站点"
+    Module="M2模块" Page="获取远程数据列表" ></app-navigation>
+    <section class="content">
+      <div style="_height:700px;min-height:700px;">
+        <select class="form-control" [(ngModel)]="comId"
+        style="width:350px;border:1px solid ;" (ngModelChange)="onChange($event);" name="select1">
+          <option [value]="c" *ngFor="let c of comIdList">{{c}}条数据分页</option>
+        </select>
+        <div style="height:12px"></div>
+        <wj-flex-grid [itemsSource]="cvPaging" [itemFormatter]="itemFormatter">
+          <wj-flex-grid-column [header]="'主键'" [binding]="'ID'" [width]="100" [isReadOnly]="'true'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'省份'" [binding]="'P'" [width]="'*'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'城市'" [binding]="'C'" [width]="'*'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'地区'" [binding]="'A'" [width]="'*'"></wj-flex-grid-column>
+        </wj-flex-grid>
+        <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
+      </div>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>

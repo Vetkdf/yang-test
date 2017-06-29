@@ -1,0 +1,25 @@
+<div class="btn-group">
+   <button type="button" class="btn btn-default"
+       (click)="this.moveToFirstPage()"
+       [disabled]="this.pageNews[2] <= 1">
+       <span class="glyphicon glyphicon-fast-backward"></span>
+   </button>
+   <button type="button" class="btn btn-default"
+       (click)="this.moveToPreviousPage()"
+       [disabled]="this.pageNews[2] <= 1">
+       <span class="glyphicon glyphicon-step-backward"></span>
+   </button>
+   <button type="button" class="btn btn-default" disabled style="width:100px">
+        {{ this.pageNews[2] | number }} / {{ this.pageNews[1] | number }}
+   </button>
+   <button type="button" class="btn btn-default"
+       (click)="this.moveToNextPage()"
+       [disabled]="this.pageNews[2] >= this.pageNews[1]">
+       <span class="glyphicon glyphicon-step-forward"></span>
+   </button>
+   <button type="button" class="btn btn-default"
+       (click)="this.moveToLastPage()"
+       [disabled]="this.pageNews[2] >= this.pageNews[1]">
+   <span class="glyphicon glyphicon-fast-forward"></span>
+   </button>
+</div>

@@ -1,0 +1,65 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="../../assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>测试账户一</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="header">导航树目录</li>
+
+      <li [ngClass]="{'active':check == 'A1'}"><a routerLink="/business/A1"><i class="fa fa-circle-o text-red"></i> <span>欢迎页面</span></a></li>
+
+      <li class="treeview" [ngClass]="{'active':treemodule == 'M1'}" >
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>模块1</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [ngClass]="{'active':check == 'M1V1'}"><a routerLink="/business/m1/m1v1"><i class="fa fa-circle-o"></i> 表单和表单提交</a></li>
+          <li [ngClass]="{'active':check == 'M1V2'}"><a routerLink="/business/m1/m1v2"><i class="fa fa-circle-o"></i> Flexgrid第一个表格</a></li>
+        </ul>
+      </li>
+      <li class="treeview" [ngClass]="{'active':treemodule == 'M2'}" >
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>模块2</span>
+          <span class="pull-right-container">
+            <!--<span class="label label-primary pull-right">4</span>-->
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [ngClass]="{'active':check == 'M2V1'}"><a routerLink="/business/m2/m2v1"><i class="fa fa-circle-o"></i>获取远程数据列表</a></li>
+          <li [ngClass]="{'active':check == 'M2V2'}"><a routerLink="/business/m2/m2v2"><i class="fa fa-circle-o"></i>基础数据类别</a></li>
+          <li [ngClass]="{'active':check == 'M2V3'}"><a routerLink="/business/m2/m2v3"><i class="fa fa-circle-o"></i>类别详细页面</a></li>
+          <li [ngClass]="{'active':check == 'M2V4'}"><a routerLink="/business/m2/m2v4"><i class="fa fa-circle-o"></i>选项 V4</a></li>
+        </ul>
+      </li>
+      <li class="treeview" [ngClass]="{'active':treemodule == 'M3'}" >
+        <a href="#">
+          <i class="fa fa-pie-chart"></i>
+          <span>模块 3</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [ngClass]="{'active':check == 'M3V1'}"><a routerLink="/business/m3/m3v1"><i class="fa fa-circle-o"></i>选项 V1</a></li>
+          <li [ngClass]="{'active':check == 'M3V2'}"><a routerLink="/business/m3/m3v2"><i class="fa fa-circle-o"></i>选项 V2</a></li>
+          <li [ngClass]="{'active':check == 'M3V3'}"><a routerLink="/business/m3/m3v3"><i class="fa fa-circle-o"></i>选项 V3</a></li>
+          <li [ngClass]="{'active':check == 'M3V4'}"><a routerLink="/business/m3/m3v4"><i class="fa fa-circle-o"></i>选项 V4</a></li>
+          <li [ngClass]="{'active':check == 'M3V5'}"><a routerLink="/business/m3/m3v5"><i class="fa fa-circle-o"></i>选项 V5</a></li>
+          <li [ngClass]="{'active':check == 'M3V6'}"><a routerLink="/business/m3/m3v6"><i class="fa fa-circle-o"></i>选项 V6</a></li>
+          <li [ngClass]="{'active':check == 'M3V7'}"><a routerLink="/business/m3/m3v7"><i class="fa fa-circle-o"></i>选项 V7</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</aside>

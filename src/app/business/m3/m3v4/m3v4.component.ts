@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-m3v4',
+  templateUrl: './m3v4.component.html',
+  styleUrls: ['./m3v4.component.css']
+})
+export class M3v4Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

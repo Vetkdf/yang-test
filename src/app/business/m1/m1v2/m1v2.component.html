@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <app-top></app-top>
+  <app-treeview treemodule="M1" treeitem="V2" ></app-treeview>
+  <div class="content-wrapper">
+    <app-navigation Showtitle="Flexgrid第一个表格" Subtitle="开始表格" Web="站点"
+    Module="M1模块" Page="Flexgrid第一个表格" ></app-navigation>
+    <section class="content">
+      <div style="_height:700px;min-height:700px;">
+        <wj-flex-grid [itemsSource]="cvPaging" [itemFormatter]="itemFormatter">
+
+          <wj-flex-grid-column [header]="'国家'" [binding]="'country'" [width]="'*'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'日期'" [binding]="'date'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Revenue'" [binding]="'amount'" [format]="'n0'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Active'" [binding]="'active'"></wj-flex-grid-column>
+
+
+        </wj-flex-grid>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default"
+              (click)="cvPaging.moveToFirstPage()"
+              [disabled]="cvPaging.pageIndex <= 0">
+              <span class="glyphicon glyphicon-fast-backward"></span>
+          </button>
+          <button type="button" class="btn btn-default"
+              (click)="cvPaging.moveToPreviousPage()"
+              [disabled]="cvPaging.pageIndex <= 0">
+              <span class="glyphicon glyphicon-step-backward"></span>
+          </button>
+          <button type="button" class="btn btn-default" disabled style="width:100px">
+              {{ cvPaging.pageIndex + 1 | number }} /
+              {{ cvPaging.pageCount | number }}
+          </button>
+          <button type="button" class="btn btn-default"
+              (click)="cvPaging.moveToNextPage()"
+              [disabled]="cvPaging.pageIndex >= cvPaging.pageCount - 1">
+              <span class="glyphicon glyphicon-step-forward"></span>
+          </button>
+          <button type="button" class="btn btn-default"
+              (click)="cvPaging.moveToLastPage()"
+              [disabled]="cvPaging.pageIndex >= cvPaging.pageCount - 1">
+          <span class="glyphicon glyphicon-fast-forward"></span>
+          </button>
+          </div>
+      </div>
+    </section>
+  </div>
+  <app-footer></app-footer>
+</div>
