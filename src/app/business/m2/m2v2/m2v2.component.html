@@ -13,7 +13,7 @@
           <wj-flex-grid-column [header]="'选项名称'" [binding]="'indexname'" [width]="200">
             <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
                 <div><a [routerLink]="['/business/m2/m2v3']" [queryParams]="{id: cell.item.id}" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">{{cell.item.indexname}}</a></div>
-            </ng-template>   
+            </ng-template>
           </wj-flex-grid-column>
           <wj-flex-grid-column [header]="'备注信息'" [binding]="'indexremark'" [width]="'*'"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="70" [isReadOnly]="'true'"></wj-flex-grid-column>
@@ -27,7 +27,7 @@
          我本来是想在表格内用链接，跳转到【类别详细页面】。但是Wijmo5是商业软件。
          目前是2107年6月21日。我用的是30天体验版。厂家无支持，无文档。我在网上找不到任何关联的资料，目前先这样。
          <br/><br/>
-         留给以后的人，要是以后公司购买了wijmo5软件，有了官方技术文档在解决吧。
+         
          -->
 
          <!-- < a routerLink="/business/m2/m2v3">
