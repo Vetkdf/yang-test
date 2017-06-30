@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import{ ActivatedRoute, Router, Params }from'@angular/router';
+import { ActivatedRoute, Router, Params }from'@angular/router';
 import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
 import * as wjInput from 'wijmo/wijmo.input';
@@ -20,42 +20,26 @@ export class M2v3Component implements OnInit {
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
   pageNews:number[] = [];
 
-  constructor(@Inject(GetList) getList: GetList, @Inject(ActivatedRoute) private route: ActivatedRoute) {
+  constructor(@Inject(GetList) getList: GetList,private route: ActivatedRoute) {
     this.GetList = getList;
   }
 
   ngOnInit() {
-    /*
-    this.route.params.forEach((params: Params) => {
-    let lettodoId = +params['id'];// 使用+将字符串类型的参数转换成数字
-    alert(lettodoId);
-     });
-     */
-
-     //this.route.params['id']
-     //let lettodoId = +this.route.snapshot.params['id'];
-     //this.route.snapshot.params['id'];
-     //alert(lettodoId);
-
-     this.route.params.subscribe((params: Params) => {
-          // params
-          //let lettodoId = +params['id'];// 使用+将字符串类型的参数转换成数字
-          //alert(lettodoId);
-      });
-
-        /*
-    this.router.routeState.parent(this.activatedRoute).params.subscribe(params => {
-       this.getDetailsById(params['id']);
-    })
-    */
-
     this.GetList.GetListPageBy_M2V3_List().
       then(backobj =>{
           this.comIdList = backobj;
-          this.comId =  this.comIdList[0].indexcode;
+          //this.route.params.forEach((params: Params) => {
+          this.route.params.subscribe((params: Params) => {
+            let urlId:string = params['id'];
+            if(urlId == undefined || urlId == null ){
+              this.comId =  this.comIdList[0].indexcode;
+            }
+            else{
+              this.comId = urlId;
+            }
+          });
           this.selectchange(this.comId);
-      }
-    );
+      });
   }
 
   onChange(classId){
@@ -115,7 +99,6 @@ export class M2v3Component implements OnInit {
             }
         }
       }
-
       if (panel.cellType === wjGrid.CellType.Cell) {
         let cellData = panel.getCellData(r,c);
         let binding = panel.columns[c].binding;

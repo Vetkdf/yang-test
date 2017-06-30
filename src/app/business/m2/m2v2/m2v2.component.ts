@@ -14,8 +14,6 @@ import * as wjGrid from 'wijmo/wijmo.grid';
 //import { WjInputModule } from 'wijmo/wijmo.angular2.input';
 //import { WjCoreModule } from 'wijmo/wijmo.angular2.core';
 
-
-
 @Component({
   selector: 'app-m2v2',
   templateUrl: './m2v2.component.html',
@@ -25,10 +23,7 @@ export class M2v2Component  implements OnInit{
 
   private GetList: GetList;
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
-
   pageNews:number[] = [];
-  //router : Router = new Router();
-
 
   constructor(@Inject(GetList) getList: GetList, private router: Router) {
     this.GetList = getList;

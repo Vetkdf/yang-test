@@ -22,6 +22,11 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuardService],
+    component: A1Component, //A1Component  M1v1Component
+  },
+  {
+    path: 'business',
+    canActivate: [AuthGuardService],
     component: A1Component,
   },
   {
@@ -53,6 +58,11 @@ const routes: Routes = [
   },
   {
     path: 'business/m2/m2v3',
+    canActivate: [AuthGuardService],
+    component: M2v3Component,
+  },
+  {
+    path: 'business/m2/m2v3/:id',
     canActivate: [AuthGuardService],
     component: M2v3Component,
   },
