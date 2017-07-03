@@ -25,45 +25,9 @@
           <wj-flex-grid-column [header]="'功能按钮'" [width]="70" [binding]="'button'" [isReadOnly]="'true'"></wj-flex-grid-column>
         </wj-flex-grid>
         <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
-
-         <br/><br/>
-         <!--
-         我本来是想在表格内用链接，跳转到【类别详细页面】。但是Wijmo5是商业软件。
-         目前是2107年6月21日。我用的是30天体验版。厂家无支持，无文档。我在网上找不到任何关联的资料，目前先这样。
-         <br/><br/>
-         [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"
-
-         <div><a [routerLink]="['/business/m2/m2v3']" [queryParams]="{id: cell.item.id}">{{cell.item.indexname}}</a></div>
-
-         -->
-
-         <!-- < a routerLink="/business/m2/m2v3">
-         { { cell.item.indexname } }</a>
-         -->
-
-
-         <button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>
-
-          <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
-               tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title pull-left">标题</h4>
-                  <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  正文
-                  Click <b>&times;</b> to close modal.
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <app-m2v2open #m2v2open Title="第一个表单模板"></app-m2v2open>
+        <button type="button" class="btn btn-primary" (click)="onclick()">添加数据</button>
       </div>
-
     </section>
   </div>
   <app-footer></app-footer>

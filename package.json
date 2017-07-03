@@ -56,7 +56,6 @@
     "rollup-plugin-uglify": "^1.0.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.3.4",
-    "wijmo": "http://prerelease.componentone.com/wijmo5/npm-images/C1Wijmo-Enterprise-Eval-AMD-5.20171.293.tgz"
+    "typescript": "~2.3.4"
   }
 }

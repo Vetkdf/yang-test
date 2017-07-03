@@ -69,28 +69,24 @@ export class M2v3Component implements OnInit {
 
             if (col.dataType == wjCore.DataType.Boolean) {
                 col.allowSorting = false;// 是否可排序
-                // count true values to initialize checkbox
-                var cnt = 0;
+                let cnt = 0;
                 for (let i = 0; i < flex.rows.length; i++) {
                     if (flex.getCellData(i, c) == true) cnt++;
                     if(flex.getCellData(i, c + 7) === '禁用'){
-                      let v = flex.rows[i];
-                      v.isReadOnly = true;
+                      flex.rows[i].isReadOnly = true;
                     }
                 }
 
-                //cell.innerHTML = '<input type="checkbox"> ' + cell.innerHTML;
                 cell.innerHTML = '<input type="checkbox"> ';
                 var cb = cell.firstChild;
                 cb.checked = cnt > 0;
                 cb.indeterminate = cnt > 0 && cnt < flex.rows.length;
 
-                // apply checkbox value to cells
                 cb.addEventListener('click', function (e) {
                     flex.beginUpdate();
                     for (let i = 0; i < flex.rows.length; i++) {
-                      let v = flex.rows[i];
-                      if(v.isReadOnly == false){
+                      //let v = flex.rows[i];
+                      if(flex.rows[i].isReadOnly == false){
                         flex.setCellData(i, c, cb.checked);
                       }
                     }

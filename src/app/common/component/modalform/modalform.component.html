@@ -1,0 +1,21 @@
+<div class="modal fade" bsModal #childModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)" role="form" >
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">{{Title}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ng-content></ng-content>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideChildModal()">关闭</button>
+            <button type="submit" class="btn btn-primary">提交</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GetList } from '../../services/getlist';
 
 import * as wjCore from 'wijmo/wijmo';
 import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
+
+//import { ModalformComponent } from '../../../common/component/modalform/modalform.component';
+import { M2v2openComponent } from './m2v2open/m2v2open.component';
 
 //import * as wj2Core from 'wijmo/wijmo.angular2.core';
 //import * as wj2Input from 'wijmo/wijmo.angular2.input';
@@ -25,7 +28,9 @@ export class M2v2Component  implements OnInit{
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
   pageNews:number[] = [];
 
-  constructor(@Inject(GetList) getList: GetList, private router: Router) {
+  @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
+
+  constructor(@Inject(GetList) getList: GetList) {
     this.GetList = getList;
     this.bindpage(1);
   }
@@ -50,27 +55,24 @@ export class M2v2Component  implements OnInit{
             if (col.dataType == wjCore.DataType.Boolean) {
                 col.allowSorting = false;// 是否可排序
 
-                var cnt = 0;
+                let cnt = 0;
                 for (let i = 0; i < flex.rows.length; i++) {
                     if (flex.getCellData(i, c) == true) cnt++;
                     if(flex.getCellData(i, c + 5) === '禁用'){
-                      let v = flex.rows[i];
-                      v.isReadOnly = true; //v.disabled = true;
+                      flex.rows[i].isReadOnly = true;
                     }
                 }
 
-                //cell.innerHTML = '<input type="checkbox"> ' + cell.innerHTML;
                 cell.innerHTML = '<input type="checkbox"> ';
-                var cb = cell.firstChild;
+                let cb = cell.firstChild;
                 cb.checked = cnt > 0;
                 cb.indeterminate = cnt > 0 && cnt < flex.rows.length;
 
-                // apply checkbox value to cells
                 cb.addEventListener('click', function (e) {
                     flex.beginUpdate();
                     for (let i = 0; i < flex.rows.length; i++) {
-                      let v = flex.rows[i];
-                      if(v.isReadOnly == false){
+                      //let v = flex.rows[i];
+                      if(flex.rows[i].isReadOnly == false){
                         flex.setCellData(i, c, cb.checked);
                       }
                     }
@@ -97,10 +99,25 @@ export class M2v2Component  implements OnInit{
                 cell.style.color = cellData ==='禁用' ? 'red':'green';
               break;
               case 'button':
-                //cell.innerHTML = '<a onclick="alert(\'主键是 ： '+cellData+'\')">编辑</a>';
-                let cellData1 = panel.getCellData(r,c -1 );
-                if(cellData1 === '可编辑'){
-                  cell.innerHTML = '<a onclick="alert(\'主键是 ： '+cellData + '\')">编辑</a>';
+                let rowData = panel.rows[r].dataItem;
+                if(rowData.isdelandedit === '可编辑'){
+                  cell.innerHTML = '<a style="cursor:pointer;">编辑</a>';
+
+                  /*
+                  cell.addEventListener('click', function (e) {
+                    //alert(rowData.id);
+
+                    //alert(e.name);
+                    //this.m2v2open.showChildModal();
+                    //m2v2open_in.showChildModal();
+                  });
+                  */
+                  cell.addEventListener('click',(e) => {
+                    //alert(rowData.id);
+                    console.log(e);
+                    //this.m2v2open.showChildModal();
+                  });
+
                 }
                 else{
                   cell.innerHTML = '编辑';
@@ -110,22 +127,14 @@ export class M2v2Component  implements OnInit{
             cell.style.textAlign = 'center';
           }
           break;
-          //case 'indexname':
-          //{
-            /*
-            let rowData = panel.rows[r].dataItem;
-            cell.addEventListener('click', function (e) {
-
-              this.router.navigate(['/business/m2/m2v3']);
-              //alert(rowData.id);
-            });
-            cell.innerHTML = '<a>' + cell.innerHTML + '</a>';
-            */
-          //  cell.innerHTML = '<div><a [routerLink]="['+ "'" + '/business/m2/m2v3' + "'" + ']" routerLinkActive="active">' + cell.innerHTML + '</a></div>';
-          //}
-          //break;
         }
       }
+  }
+
+  //================================================
+
+  onclick():void{
+    this.m2v2open.showChildModal();
   }
 
 }

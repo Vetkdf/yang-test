@@ -27,7 +27,6 @@ export class UserService  {
                 }
               })
               .catch(this.handleError);
-              // use bad,  my crying .angular4.2.4 
   }
 
   private handleError(error: any): Promise<any> {

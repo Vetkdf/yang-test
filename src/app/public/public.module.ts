@@ -29,11 +29,11 @@ import { PagingComponent } from './paging/paging.component';
     PagingComponent,
   ],
   exports: [
-        TopComponent,
-        TreeviewComponent,
-        FooterComponent,
-        NavigationComponent,
-        PagingComponent,
+    TopComponent,
+    TreeviewComponent,
+    FooterComponent,
+    NavigationComponent,
+    PagingComponent,
     ],
 })
 export class PublicModule { }

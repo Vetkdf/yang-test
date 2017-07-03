@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PublicModule } from '../public/public.module';
 import { BusinessRoutingModule } from './business.routing.module';
+import { CommonFunctionModule } from '../common/common.function.module';
 
 import { A1Component } from './a1/a1.component';
 import { M1v1Component } from './m1/m1v1/m1v1.component';
@@ -31,11 +32,14 @@ import { GetList } from './services/getlist';
 import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { M2v2openComponent } from './m2/m2v2/m2v2open/m2v2open.component';
+
 @NgModule({
   imports: [
     CommonModule,
     PublicModule,
     BusinessRoutingModule,
+    CommonFunctionModule,
     FormsModule,
     WjInputModule,
     WjGridModule,
@@ -58,6 +62,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     M3v5Component,
     M3v6Component,
     M3v7Component,
+    M2v2openComponent,
   ],
   providers: [DataSvc,PostService,GetList]
 })
