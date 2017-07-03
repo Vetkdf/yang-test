@@ -25,8 +25,15 @@
           <wj-flex-grid-column [header]="'功能按钮'" [width]="70" [binding]="'button'" [isReadOnly]="'true'"></wj-flex-grid-column>
         </wj-flex-grid>
         <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
+        <div style="float:right;">
+          <button type="button" class="btn btn-primary" (click)="onclick()">添加数据</button>
+          <button type="button" class="btn btn-primary" (click)="onclick()">修改数据</button>
+          <button type="button" class="btn btn-primary" (click)="onclick()">批量删除</button>
+          &nbsp;&nbsp;&nbsp;
+
+        </div>
         <app-m2v2open #m2v2open Title="第一个表单模板"></app-m2v2open>
-        <button type="button" class="btn btn-primary" (click)="onclick()">添加数据</button>
+
       </div>
     </section>
   </div>
