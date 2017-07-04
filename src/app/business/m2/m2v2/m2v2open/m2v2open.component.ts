@@ -12,6 +12,8 @@ export class M2v2openComponent implements OnInit {
 
   @ViewChild('childModal') public childModal:ModalDirective;
   @Input() Title: string = '表单模板页';
+  text1:string;
+  textarea1:string;
 
   constructor() { } //private modalService: Modal.ModalDirective
 
