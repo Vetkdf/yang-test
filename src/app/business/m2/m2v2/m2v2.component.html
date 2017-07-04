@@ -6,7 +6,7 @@
     Module="M2模块" Page="基础数据类别" ></app-navigation>
     <section class="content">
       <div style="_height:700px;min-height:700px;">
-        <wj-flex-grid [itemsSource]="cvPaging" auto-generate-columns="false" [itemFormatter]="itemFormatter">
+        <wj-flex-grid #flexgrid1 [itemsSource]="cvPaging" auto-generate-columns="false" [itemFormatter]="itemFormatter">
           <wj-flex-grid-column [header]="''" [binding]="'check'" [width]="30"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'主键'" [binding]="'id'" [width]="60" [isReadOnly]="'true'"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'系统编码'" [binding]="'indexcode'" [width]="80" [isReadOnly]="'true'">
@@ -26,14 +26,12 @@
         </wj-flex-grid>
         <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
         <div style="float:right;">
-          <button type="button" class="btn btn-primary" (click)="onclick()">添加数据</button>
-          <button type="button" class="btn btn-primary" (click)="onclick()">修改数据</button>
-          <button type="button" class="btn btn-primary" (click)="onclick()">批量删除</button>
+          <button type="button" class="btn btn-primary" (click)="addnew()">添加数据</button>
+          <button type="button" class="btn btn-primary" (click)="edit()">编辑数据</button>
+          <button type="button" class="btn btn-primary" (click)="dellList()">批量删除</button>
           &nbsp;&nbsp;&nbsp;
-
         </div>
         <app-m2v2open #m2v2open Title="第一个表单模板"></app-m2v2open>
-
       </div>
     </section>
   </div>

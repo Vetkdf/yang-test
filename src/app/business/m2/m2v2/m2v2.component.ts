@@ -29,6 +29,7 @@ export class M2v2Component  implements OnInit{
   pageNews:number[] = [];
 
   @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
+  @ViewChild('flexgrid1') public flexgrid1:wjGrid.FlexGrid;
 
   constructor(@Inject(GetList) getList: GetList) {
     this.GetList = getList;
@@ -43,6 +44,7 @@ export class M2v2Component  implements OnInit{
   }
 
   ngOnInit() {
+    this.flexgrid1.selectionMode = wjGrid.SelectionMode.Row;
   }
 
   itemFormatter(panel, r, c, cell) {
@@ -102,7 +104,6 @@ export class M2v2Component  implements OnInit{
                 let rowData = panel.rows[r].dataItem;
                 if(rowData.isdelandedit === '可编辑'){
                   cell.innerHTML = '<a style="cursor:pointer;">编辑</a>';
-
                   /*
                   cell.addEventListener('click', function (e) {
                     //alert(rowData.id);
@@ -113,9 +114,8 @@ export class M2v2Component  implements OnInit{
                   });
                   */
                   cell.addEventListener('click',(e) => {
-                    //alert(rowData.id);
-                    console.log(e);
-                    //this.m2v2open.showChildModal();
+                    alert('主键是：'+rowData.id);
+                    //console.log(e);
                   });
 
                 }
@@ -133,8 +133,47 @@ export class M2v2Component  implements OnInit{
 
   //================================================
 
-  onclick():void{
+  addnew():void{
     this.m2v2open.showChildModal();
+  }
+
+  edit():void{
+    let inId:number = 0;
+    let typeid:number = 0;
+    let flex:wjGrid.Row[] = this.flexgrid1.selectedRows as wjGrid.Row[];
+    if(flex.length == 1){
+      inId = flex[0].dataItem.id;
+      typeid = 1;
+      let isdelandedit:string = flex[0].dataItem.isdelandedit;
+      if(isdelandedit == '已锁定') typeid = 2;
+    }
+    switch(typeid){
+      case 0:
+        alert('没有选中行，请先选中行后修改');
+      break;
+      case 2:
+        alert('选中行的主键是' + inId + '  但是本行状态位是已锁定，不可在编辑');
+      break;
+      case 1:
+        alert('选中行的主键是' + inId);
+        this.m2v2open.showChildModal();
+      break;
+    }
+  }
+
+  dellList():void{
+    let flex:wjGrid.RowCollection = this.flexgrid1.rows;
+    let checkboxAdd:number[] = [];
+    for(let i = 0;i<flex.length;i++){
+      let rowData = flex[i].dataItem;
+      if(rowData.check == true){ checkboxAdd.push(rowData.id);}
+    }
+    if(checkboxAdd.length == 0) {
+      alert('没有选择');
+    }
+    else {
+      alert('您选择的主键为[' + checkboxAdd.join(",") + '] 业务操作自己去实现');
+    }
   }
 
 }

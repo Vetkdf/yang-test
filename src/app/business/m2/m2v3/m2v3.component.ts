@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params }from'@angular/router';
 import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
 import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackContent_M2V2 } from '../../../module/getlist';
+import { M2v2openComponent } from '../m2v2/m2v2open/m2v2open.component';
 
 @Component({
   selector: 'app-m2v3',
@@ -13,6 +14,8 @@ import { PageBackContent_M2V2 } from '../../../module/getlist';
 })
 export class M2v3Component implements OnInit {
 
+  @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
+  @ViewChild('flexgrid1') public flexgrid1:wjGrid.FlexGrid;
   comIdList:PageBackContent_M2V2[];
   comId:string = '';
 
@@ -25,6 +28,7 @@ export class M2v3Component implements OnInit {
   }
 
   ngOnInit() {
+    this.flexgrid1.selectionMode = wjGrid.SelectionMode.Row;
     this.GetList.GetListPageBy_M2V3_List().
       then(backobj =>{
           this.comIdList = backobj;
@@ -132,10 +136,49 @@ export class M2v3Component implements OnInit {
       }
   }
 
-  selectCheck() {
-    alert('先获取表格对象在说');
-    //let flexgrid1 = this.flexgrid1;
+  //================================================
 
+  addnew():void{
+    this.m2v2open.showChildModal();
+  }
+
+  edit():void{
+    let inId:number = 0;
+    let typeid:number = 0;
+    let flex:wjGrid.Row[] = this.flexgrid1.selectedRows as wjGrid.Row[];
+    if(flex.length == 1){
+      inId = flex[0].dataItem.id;
+      typeid = 1;
+      let isdelandedit:string = flex[0].dataItem.isdelandedit;
+      if(isdelandedit == '已锁定') typeid = 2;
+    }
+    switch(typeid){
+      case 0:
+        alert('没有选中行，请先选中行后修改');
+      break;
+      case 2:
+        alert('选中行的主键是' + inId + '  但是本行状态位是已锁定，不可在编辑');
+      break;
+      case 1:
+        alert('选中行的主键是' + inId);
+        this.m2v2open.showChildModal();
+      break;
+    }
+  }
+
+  dellList():void{
+    let flex:wjGrid.RowCollection = this.flexgrid1.rows;
+    let checkboxAdd:number[] = [];
+    for(let i = 0;i<flex.length;i++){
+      let rowData = flex[i].dataItem;
+      if(rowData.check == true){ checkboxAdd.push(rowData.id);}
+    }
+    if(checkboxAdd.length == 0) {
+      alert('没有选择');
+    }
+    else {
+      alert('您选择的主键为[' + checkboxAdd.join(",") + '] 业务操作自己去实现');
+    }
   }
 
 }
