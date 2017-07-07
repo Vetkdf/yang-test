@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { PageBackList,Wijmo_PageBackList,PageBackContentSSM, PageBackContent_M2V2,PageBackContent_M2V3} from '../../module/getlist';
+import { PageBackList,Wijmo_PageBackList,PageBackContentSSM, PageBackContent_M2V2,PageBackContent_M2V3,BackNews} from '../../module/getlist';
 import ConstantsList from '../../common/constants/config';
 import * as wjcCore from 'wijmo/wijmo';
 'use strict';
@@ -117,6 +117,26 @@ export class GetList {
                   }
                   Wijmo.pageNews = PB.pageNews;
                   return Wijmo;
+                }
+                else{
+                  console.error('服务端返回的 http status 错误 : ', status);
+                  return null;
+                }
+              })
+              .catch(this.handleError);
+  }
+
+  //======================================================
+
+  public GetSequenceCode(Type:number,IsAdd:number):Promise<string> {
+    const url = `${ConstantsList.HOSTUser}/yang-test/angular/getsequencecode/${Type}/${IsAdd}/`;
+    return this.http.get(url)
+              .toPromise()
+              .then(res => {
+                let status:number = res.status;
+                if(status === 200){
+                  let Back = res.json() as BackNews;
+                  return Back.backNews;
                 }
                 else{
                   console.error('服务端返回的 http status 错误 : ', status);

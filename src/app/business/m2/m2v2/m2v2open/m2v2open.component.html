@@ -3,26 +3,39 @@
       <div class="modal-content">
         <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)" role="form" >
           <div class="modal-header">
-            <h4 class="modal-title pull-left">{{Title}}</h4>
+            <h4 class="modal-title pull-left">{{ShowType}}{{Title}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
+          {{showT}}
+
           <div class="modal-body">
-            
+
             <div class="form-group">
-              <label>文本框</label>
+              <label>系统编码</label>
               <input type="text"
               class="form-control"
-              placeholder="请输入 ..."
+              placeholder=""
               [(ngModel)]="text1"
               name="text1"
               >
             </div>
 
+            <div class="form-group">
+              <label>选项名称</label>
+              <input type="text"
+              class="form-control"
+              placeholder=""
+              [(ngModel)]="text2"
+              name="text2"
+              >
+            </div>
+
             <!-- textarea -->
             <div class="form-group">
-              <label>文本区域</label>
+              <label>备注信息</label>
               <textarea
               class="form-control"
               rows="3"
@@ -30,6 +43,24 @@
               [(ngModel)]="textarea1"
               name="textarea1"
               ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>应用状态</label>
+              <div class="radio" *ngFor="let t of typeList">
+                <label>
+                  <input type="radio" (change)="radio=t.id" name="radio" [checked]="radio===t.id">{{t.name}}
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>编辑状态</label>
+              <div class="radio"  *ngFor="let t of typeList1">
+                <label>
+                  <input type="radio" (change)="radio1=t.id" name="radio1" [checked]="radio1===t.id">{{t.name}}
+                </label>
+              </div>
             </div>
 
           </div>

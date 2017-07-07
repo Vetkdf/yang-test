@@ -42,3 +42,9 @@ export class PageBackContent_M2V3{
     updatetime:number;
     orderid:number;
 }
+
+//=================================================
+
+export class BackNews {
+  backNews:string;
+}

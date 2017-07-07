@@ -8,14 +8,9 @@ export class ModalService {
   constructor(private modalService: Modal.ModalDirective) { }
 
   sss():void{
-
     //this.modalService.show();
-
     //this.modalService.
-
     //let c = new ModalDirective();
-
-
   }
 
 }

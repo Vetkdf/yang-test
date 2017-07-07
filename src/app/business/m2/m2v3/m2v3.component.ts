@@ -139,7 +139,7 @@ export class M2v3Component implements OnInit {
   //================================================
 
   addnew():void{
-    this.m2v2open.showChildModal();
+    this.m2v2open.showChildModal(null);
   }
 
   edit():void{
@@ -160,8 +160,8 @@ export class M2v3Component implements OnInit {
         alert('选中行的主键是' + inId + '  但是本行状态位是已锁定，不可在编辑');
       break;
       case 1:
-        alert('选中行的主键是' + inId);
-        this.m2v2open.showChildModal();
+        //alert('选中行的主键是' + inId);
+        this.m2v2open.showChildModal(flex[0].dataItem);
       break;
     }
   }
