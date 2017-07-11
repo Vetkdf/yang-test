@@ -33,6 +33,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { M2v2openComponent } from './m2/m2v2/m2v2open/m2v2open.component';
+import { M2v3openComponent } from './m2/m2v3/m2v3open/m2v3open.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { M2v2openComponent } from './m2/m2v2/m2v2open/m2v2open.component';
     M3v6Component,
     M3v7Component,
     M2v2openComponent,
+    M2v3openComponent,
   ],
   providers: [DataSvc,PostService,GetList]
 })

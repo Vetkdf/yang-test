@@ -37,7 +37,9 @@ export class M2v2Component  implements OnInit{
   }
 
   bindpage(event:number):void {
-    this.GetList.GetListPageBy_M2V2(event).then(backobj =>{
+    let pageindex :number = event;
+    if(pageindex == 0){ pageindex = this.pageNews[2];}
+    this.GetList.GetListPageBy_M2V2(pageindex).then(backobj =>{
       this.cvPaging.sourceCollection = backobj.List;
       this.pageNews = backobj.pageNews;
     });
@@ -60,7 +62,7 @@ export class M2v2Component  implements OnInit{
                 let cnt = 0;
                 for (let i = 0; i < flex.rows.length; i++) {
                     if (flex.getCellData(i, c) == true) cnt++;
-                    if(flex.getCellData(i, c + 5) === '禁用'){
+                    if(flex.getCellData(i, c + 5) === 1){
                       flex.rows[i].isReadOnly = true;
                     }
                 }
@@ -87,45 +89,25 @@ export class M2v2Component  implements OnInit{
         let binding = panel.columns[c].binding;
         switch(binding){
           case 'id':
-          case 'indexcode':
+          //case 'indexcode':
           case 'isdel':
           case 'isdelandedit':
-          case 'button':
+          //case 'button':
           {
-            switch(binding) {
-              case 'isdelandedit':
-                cell.style.color = cellData ==='已锁定' ? 'red':'green';
-              break;
-              case 'isdel':
-                cell.style.color = cellData ==='禁用' ? 'red':'green';
-              break;
-              case 'button':
-                let rowData = panel.rows[r].dataItem;
-                if(rowData.isdelandedit === '可编辑'){
-                  cell.innerHTML = '<a style="cursor:pointer;">编辑</a>';
-                  /*
-                  cell.addEventListener('click', function (e) {
-                    //alert(rowData.id);
-
-                    //alert(e.name);
-                    //this.m2v2open.showChildModal();
-                    //m2v2open_in.showChildModal();
-                  });
-                  */
-                  cell.addEventListener('click',(e) => {
-                    alert('主键是：'+rowData.id);
-                    //console.log(e);
-                  });
-
-                }
-                else{
-                  cell.innerHTML = '编辑';
-                }
-              break;
-            }
             cell.style.textAlign = 'center';
           }
           break;
+          /*
+          case 'button':
+          {
+            let cb = cell.firstChild;
+            cb.addEventListener('click', function (e) {
+                console.log(e);
+                //this.edit();
+            });
+          }
+          break;
+          */
         }
       }
   }
@@ -142,7 +124,7 @@ export class M2v2Component  implements OnInit{
     */
   }
 
-  edit():void{
+  public edit():void{
     let inId:number = 0;
     let typeid:number = 0;
     let flex:wjGrid.Row[] = this.flexgrid1.selectedRows as wjGrid.Row[];
@@ -150,7 +132,7 @@ export class M2v2Component  implements OnInit{
       inId = flex[0].dataItem.id;
       typeid = 1;
       let isdelandedit:string = flex[0].dataItem.isdelandedit;
-      if(isdelandedit == '已锁定') typeid = 2;
+      if(isdelandedit == '1') typeid = 2;
     }
     switch(typeid){
       case 0:
@@ -159,6 +141,7 @@ export class M2v2Component  implements OnInit{
       case 2:
         alert('选中行的主键是' + inId + '  但是本行状态位是已锁定，不可在编辑');
       break;
+      //case 2:
       case 1:
         //alert('选中行的主键是' + inId);
         this.m2v2open.showChildModal(flex[0].dataItem);

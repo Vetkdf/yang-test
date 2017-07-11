@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response ,RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { PageBackList,Wijmo_PageBackList,PageBackContentSSM, PageBackContent_M2V2,PageBackContent_M2V3,BackNews} from '../../module/getlist';
 import ConstantsList from '../../common/constants/config';
 import * as wjcCore from 'wijmo/wijmo';
+import { BackCode } from '../../module/formdata';
 'use strict';
 
 @Injectable()
@@ -60,8 +61,10 @@ export class GetList {
                           indexcode: PBC[i].indexcode,
                           indexname: PBC[i].indexname,
                           indexremark: PBC[i].indexremark,
-                          isdel: PBC[i].isdel === 0 ? '启用':'禁用',
-                          isdelandedit: PBC[i].isdelandedit === 0 ? '可编辑':'已锁定',
+                          //isdel: PBC[i].isdel === 0 ? '启用':'禁用',
+                          //isdelandedit: PBC[i].isdelandedit === 0 ? '可编辑':'已锁定',
+                          isdel: PBC[i].isdel,
+                          isdelandedit:PBC[i].isdelandedit,
                           button:PBC[i].id,
                       });
                   }
@@ -109,9 +112,11 @@ export class GetList {
                           //lastworkid: PBC[i].lastworkid,
                           //updatetime: PBC[i].updatetime,
                           orderid: PBC[i].orderid,
-                          isdel: PBC[i].isdel === 0 ? '启用':'禁用',
                           //isdel: PBC[i].isdel === 0,//用这个会自动变成checkbox
-                          isdelandedit: PBC[i].isdelandedit === 0 ? '可编辑':'已锁定',
+                          isdel: PBC[i].isdel,
+                          isdelandedit: PBC[i].isdelandedit,
+                          //isdel: PBC[i].isdel === 0 ? '启用':'禁用',
+                          //isdelandedit: PBC[i].isdelandedit === 0 ? '可编辑':'已锁定',
                           button:PBC[i].id,
                       });
                   }
@@ -144,6 +149,54 @@ export class GetList {
                 }
               })
               .catch(this.handleError);
+  }
+
+  //======================================================
+
+  public Form_M2V2(postvalue:PageBackContent_M2V2,IsAdd:boolean): Promise<BackCode> {
+    let url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v2/`;
+    let body = postvalue;//这个可以
+    let headers = ConstantsList.headers;//spring的restful接口用这个
+    let options = new RequestOptions({ headers: headers });
+    if(IsAdd){
+      return this.http.post(url, body, options)
+      .toPromise()
+      .then((res) => {
+          return res.json() as BackCode;
+      })
+      .catch(this.handleError);
+    }
+    else{
+      return this.http.put(url, body, options)
+      .toPromise()
+      .then((res) => {
+          return res.json() as BackCode;
+      })
+      .catch(this.handleError);
+    }
+  }
+
+  public Form_M2V3(postvalue:PageBackContent_M2V3,IsAdd:boolean): Promise<BackCode> {
+    let url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v3/`;
+    let body = postvalue;//这个可以
+    let headers = ConstantsList.headers;//spring的restful接口用这个
+    let options = new RequestOptions({ headers: headers });
+    if(IsAdd){
+      return this.http.post(url, body, options)
+      .toPromise()
+      .then((res) => {
+          return res.json() as BackCode;
+      })
+      .catch(this.handleError);
+    }
+    else{
+      return this.http.put(url, body, options)
+      .toPromise()
+      .then((res) => {
+          return res.json() as BackCode;
+      })
+      .catch(this.handleError);
+    }
   }
 
   private handleError(error: any): Promise<any> {

@@ -11,18 +11,30 @@
           <wj-flex-grid-column [header]="'主键'" [binding]="'id'" [width]="60" [isReadOnly]="'true'"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'系统编码'" [binding]="'indexcode'" [width]="80" [isReadOnly]="'true'">
             <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
-                <div><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexcode}}</a></div>
+                <div style="text-align:center;"><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexcode}}</a></div>
             </ng-template>
           </wj-flex-grid-column>
           <wj-flex-grid-column [header]="'选项名称'" [binding]="'indexname'" [width]="200">
             <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
-                <div><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexname}}</a></div>
+                <div style="text-align:center;"><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexname}}</a></div>
             </ng-template>
           </wj-flex-grid-column>
           <wj-flex-grid-column [header]="'备注信息'" [binding]="'indexremark'" [width]="'*'"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="70" [isReadOnly]="'true'"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'isdelandedit'" [width]="70" [isReadOnly]="'true'"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'功能按钮'" [width]="70" [binding]="'button'" [isReadOnly]="'true'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="70" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
+                <span [ngStyle]="{color:cell.item.isdel == 0 ?'green':'red'}">
+                  {{cell.item.isdel==0?'启用':'禁用'}}
+                </span>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'isdelandedit'" [width]="70" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
+                <span [ngStyle]="{color:cell.item.isdelandedit == 0 ?'green':'red'}">
+                  {{cell.item.isdelandedit==0 ? '可编辑':'已锁定'}}
+                </span>
+            </ng-template>
+          </wj-flex-grid-column>
+
         </wj-flex-grid>
         <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
         <div style="float:right;">
@@ -31,9 +43,21 @@
           <button type="button" class="btn btn-primary" (click)="dellList()">批量删除</button>
           &nbsp;&nbsp;&nbsp;
         </div>
-        <app-m2v2open #m2v2open Title="基础数据类别"></app-m2v2open>
+        <app-m2v2open #m2v2open Title="基础数据类别" (change)="bindpage(0)"></app-m2v2open>
       </div>
     </section>
   </div>
   <app-footer></app-footer>
 </div>
+
+<!--
+<wj-flex-grid-column [header]="'功能按钮'" [width]="70" [binding]="'button'" [isReadOnly]="'true'">
+  <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
+    <div style="text-align:center;">
+      <a *ngIf="cell.item.isdelandedit==0" [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">编辑</a>
+      <a *ngIf="cell.item.isdelandedit==2" onclick="this.edit()">编辑</a>
+      <span *ngIf="cell.item.isdelandedit==1">编辑</span>
+    </div>
+  </ng-template>
+</wj-flex-grid-column>
+-->

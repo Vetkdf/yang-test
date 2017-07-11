@@ -5,7 +5,7 @@ import * as wjCore from 'wijmo/wijmo';
 import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackContent_M2V2 } from '../../../module/getlist';
-import { M2v2openComponent } from '../m2v2/m2v2open/m2v2open.component';
+import { M2v3openComponent } from '../m2v3/m2v3open/m2v3open.component';
 
 @Component({
   selector: 'app-m2v3',
@@ -14,7 +14,7 @@ import { M2v2openComponent } from '../m2v2/m2v2open/m2v2open.component';
 })
 export class M2v3Component implements OnInit {
 
-  @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
+  @ViewChild('m2v3open') public m2v3open:M2v3openComponent;
   @ViewChild('flexgrid1') public flexgrid1:wjGrid.FlexGrid;
   comIdList:PageBackContent_M2V2[];
   comId:string = '';
@@ -32,7 +32,6 @@ export class M2v3Component implements OnInit {
     this.GetList.GetListPageBy_M2V3_List().
       then(backobj =>{
           this.comIdList = backobj;
-          //this.route.params.forEach((params: Params) => {
           this.route.params.subscribe((params: Params) => {
             let urlId:string = params['id'];
             if(urlId == undefined || urlId == null ){
@@ -58,7 +57,9 @@ export class M2v3Component implements OnInit {
   //===================
 
   bindpage(event:number):void {
-    this.GetList.GetListPageBy_M2V3(event,this.comId).then(backobj =>{
+    let pageindex :number = event;
+    if(pageindex == 0){ pageindex = this.pageNews[2];}
+    this.GetList.GetListPageBy_M2V3(pageindex,this.comId).then(backobj =>{
       this.cvPaging.sourceCollection = backobj.List;
       this.pageNews = backobj.pageNews;
     });
@@ -76,7 +77,7 @@ export class M2v3Component implements OnInit {
                 let cnt = 0;
                 for (let i = 0; i < flex.rows.length; i++) {
                     if (flex.getCellData(i, c) == true) cnt++;
-                    if(flex.getCellData(i, c + 7) === '禁用'){
+                    if(flex.getCellData(i, c + 7) === 1){
                       flex.rows[i].isReadOnly = true;
                     }
                 }
@@ -112,6 +113,7 @@ export class M2v3Component implements OnInit {
           case 'button':
           {
             switch(binding) {
+              /*
               case 'isdelandedit':
                 cell.style.color = cellData ==='已锁定' ? 'red':'green';
               break;
@@ -128,6 +130,7 @@ export class M2v3Component implements OnInit {
                   cell.innerHTML = '编辑'; //'<a href="javascript:void(0)"  disabled = "ture" >编辑</a>';
                 }
               break;
+              */
             }
             cell.style.textAlign = 'center';
           }
@@ -139,7 +142,7 @@ export class M2v3Component implements OnInit {
   //================================================
 
   addnew():void{
-    this.m2v2open.showChildModal(null);
+    this.m2v3open.showChildModal(null,this.comId,true);
   }
 
   edit():void{
@@ -149,8 +152,8 @@ export class M2v3Component implements OnInit {
     if(flex.length == 1){
       inId = flex[0].dataItem.id;
       typeid = 1;
-      let isdelandedit:string = flex[0].dataItem.isdelandedit;
-      if(isdelandedit == '已锁定') typeid = 2;
+      let isdelandedit:number = flex[0].dataItem.isdelandedit;
+      if(isdelandedit == 1) typeid = 2;
     }
     switch(typeid){
       case 0:
@@ -161,7 +164,7 @@ export class M2v3Component implements OnInit {
       break;
       case 1:
         //alert('选中行的主键是' + inId);
-        this.m2v2open.showChildModal(flex[0].dataItem);
+        this.m2v3open.showChildModal(flex[0].dataItem,this.comId,false);
       break;
     }
   }

@@ -8,7 +8,7 @@
       <div style="_height:700px;min-height:700px;">
         <select class="form-control" [(ngModel)]="comId"
         style="width:350px;border:1px solid ;" (ngModelChange)="onChange($event);" name="select1">
-          <option [value]="c.indexcode" *ngFor="let c of comIdList">{{c.indexname}} -- {{c.indexcode}}</option>
+          <option [value]="c.indexcode" *ngFor="let c of comIdList">{{c.indexname}} -- {{c.indexcode}} -- {{c.isdel==0?'启用':'禁用'}} -- {{c.isdelandedit==0?'可编辑':'已锁定'}}</option>
         </select>
         <div style="height:12px"></div>
         <wj-flex-grid #flexgrid1 [itemsSource]="cvPaging" [itemFormatter]="itemFormatter" auto-generate-columns="false">
@@ -19,9 +19,20 @@
           <wj-flex-grid-column [header]="'子类名称'" [binding]="'name'" [width]="130"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'备注信息'" [binding]="'remark'" [width]="'*'"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'排序ID'" [binding]="'orderid'" [width]="65"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="70" [isReadOnly]="'true'"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'isdelandedit'" [width]="70" [isReadOnly]="'true'"></wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'功能按钮'" [width]="70" [binding]="'button'" [isReadOnly]="'true'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="70" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
+                <span [ngStyle]="{color:cell.item.isdel == 0 ?'green':'red'}">
+                  {{cell.item.isdel==0?'启用':'禁用'}}
+                </span>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'isdelandedit'" [width]="70" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
+                <span [ngStyle]="{color:cell.item.isdelandedit == 0 ?'green':'red'}">
+                  {{cell.item.isdelandedit==0 ? '可编辑':'已锁定'}}
+                </span>
+            </ng-template>
+          </wj-flex-grid-column>
         </wj-flex-grid>
         <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
         <div style="float:right;">
@@ -30,7 +41,7 @@
           <button type="button" class="btn btn-primary" (click)="dellList()">批量删除</button>
           &nbsp;&nbsp;&nbsp;
         </div>
-        <app-m2v2open #m2v2open Title="第一个表单模板"></app-m2v2open>
+        <app-m2v3open #m2v3open Title="类别详细页面" (change)="bindpage(0)"></app-m2v3open>
       </div>
     </section>
   </div>

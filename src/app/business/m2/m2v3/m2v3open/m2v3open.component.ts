@@ -4,14 +4,14 @@ import * as Modal from 'ngx-bootstrap/modal';
 import { ModalDirective,ModalModule,ModalOptions } from 'ngx-bootstrap/modal';
 import { GetList } from '../../../services/getlist';
 import { FormsModule } from '@angular/forms';
-import { PageBackContent_M2V2} from '../../../../module/getlist';
+import { PageBackContent_M2V3} from '../../../../module/getlist';
 
 @Component({
-  selector: 'app-m2v2open',
-  templateUrl: './m2v2open.component.html',
-  styleUrls: ['./m2v2open.component.css']
+  selector: 'app-m2v3open',
+  templateUrl: './m2v3open.component.html',
+  styleUrls: ['./m2v3open.component.css']
 })
-export class M2v2openComponent implements OnInit {
+export class M2v3openComponent implements OnInit {
 
   private GetList: GetList;
   @ViewChild('childModal') public childModal:ModalDirective;
@@ -27,13 +27,9 @@ export class M2v2openComponent implements OnInit {
         {id: 0, name: '启用'},
         {id: 1, name: '禁用'},
   ];
-  typeList1:any = [
-        {id: 0, name: '可编辑'},
-        {id: 1, name: '已锁定'},
-  ];
 
-  P:PageBackContent_M2V2 = new PageBackContent_M2V2();
-  Post:PageBackContent_M2V2 = new PageBackContent_M2V2();
+  P:PageBackContent_M2V3 = new PageBackContent_M2V3();
+  Post:PageBackContent_M2V3 = new PageBackContent_M2V3();
 
   constructor(@Inject(GetList) getList: GetList) {
     this.GetList = getList;
@@ -50,28 +46,33 @@ export class M2v2openComponent implements OnInit {
 
   }
 
-  public showChildModal(dataItem:any):void {
-    if(dataItem == null) {
+  public showChildModal(dataItem:any,code:string,isAdd:boolean):void {
+    if(isAdd) {
       this.ShowType = '新增';
       this.IsAdd = true;
       this.P.id = null;
-      this.P.indexname = null;
+      this.P.code = null;
       this.P.isdel = null;
       this.P.isdelandedit = null;
-      this.P.indexremark = null;
-      this.GetList.GetSequenceCode(1,1).
+      this.P.name = null;
+      this.P.remark = null;
+      this.P.orderid = null;
+      this.P.indexcode = code;
+      this.GetList.GetSequenceCode(0,1).
         then(backobj =>{
-             this.P.indexcode = backobj.toString();
+             this.P.code = backobj.toString();
         });
     }
     else {
       this.ShowType = '编辑';
       this.P.id = dataItem.id;
-      this.P.indexcode = dataItem.indexcode;
-      this.P.indexname = dataItem.indexname;
+      this.P.code = dataItem.code;
       this.P.isdel = dataItem.isdel;
       this.P.isdelandedit = dataItem.isdelandedit;
-      this.P.indexremark = dataItem.indexremark;
+      this.P.name = dataItem.name;
+      this.P.remark = dataItem.remark;
+      this.P.orderid = dataItem.orderid;
+
       this.IsAdd = false;
       this.radio = this.P.isdel;
     }
@@ -84,19 +85,21 @@ export class M2v2openComponent implements OnInit {
 
   public onSubmit(formValue:any):void {
 
-    this.Post.indexcode = formValue.text1;
-    this.Post.indexname = formValue.text2;
-    this.Post.indexremark = formValue.textarea1;
+    this.Post.code = formValue.text1;
+    this.Post.name = formValue.text2;
+    this.Post.remark = formValue.textarea1;
+    this.Post.orderid = formValue.text3;
     this.Post.isdel = this.radio;
+    this.Post.indexcode = this.P.indexcode;
     if(this.IsAdd==false) {
       this.Post.id = this.P.id;
     }
 
-    this.GetList.Form_M2V2(this.Post,this.IsAdd).then(
+    this.GetList.Form_M2V3(this.Post,this.IsAdd).then(
       ub => {
         //let show:string = '     服务端异常';
         if(ub.backCode == 1){
-          if(this.IsAdd){ this.GetList.GetSequenceCode(1,0).then(backobj =>{ });}
+          if(this.IsAdd){ this.GetList.GetSequenceCode(0,0).then(backobj =>{ });}
           this.change.emit();
           this.hideChildModal();
         }
@@ -111,5 +114,4 @@ export class M2v2openComponent implements OnInit {
       }
     );
   }
-
 }

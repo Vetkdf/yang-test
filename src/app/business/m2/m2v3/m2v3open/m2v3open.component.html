@@ -11,20 +11,20 @@
           <div class="modal-body">
 
             <div class="form-group">
-              <label>系统编码</label>
+              <label>子类编码</label>
               <input type="text" readonly
               class="form-control"
               placeholder=""
-              [(ngModel)]="P.indexcode"
+              [(ngModel)]="P.code"
               name="text1">
             </div>
 
             <div class="form-group">
-              <label>选项名称</label>
+              <label>子类名称</label>
               <input type="text"
               class="form-control"
               placeholder="请输入 ..."
-              [(ngModel)]="P.indexname"
+              [(ngModel)]="P.name"
               name="text2">
             </div>
 
@@ -35,9 +35,18 @@
               class="form-control"
               rows="3"
               placeholder="请输入 ..."
-              [(ngModel)]="P.indexremark"
+              [(ngModel)]="P.remark"
               name="textarea1">
             </textarea>
+            </div>
+
+            <div class="form-group">
+              <label>排序ID</label>
+              <input type="text"
+              class="form-control"
+              placeholder="请输入数字 ...这里以后做检测，目前要是非数字会出错"
+              [(ngModel)]="P.orderid"
+              name="text3">
             </div>
 
             <div class="form-group">
