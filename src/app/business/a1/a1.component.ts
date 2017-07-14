@@ -12,9 +12,6 @@ export class A1Component implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('主显示页面');
-    //let ss:number = window.innerWidth();
-    //alert($window.innerHeight);
-
     Auxiliary.prototype.ControlHeight("#content");
   }
 

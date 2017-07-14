@@ -90,7 +90,7 @@ export class M2v3openComponent implements OnInit {
     this.Post.name = formValue.name;
     this.Post.remark = formValue.remark;
     try {
-      this.Post.orderid = <number>formValue.orderid;
+      this.Post.orderid = <number>formValue.orderid;      
     }
     catch (Exception){
       this.Post.orderid = 0;
