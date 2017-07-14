@@ -1,11 +1,11 @@
 <div class="wrapper">
   <app-top></app-top>
   <app-treeview treemodule="M2" treeitem="V3" ></app-treeview>
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="height:auto;">
     <app-navigation Showtitle="类别详细页面" Subtitle="显示每个大类下的所属的小类" Web="站点"
     Module="M2模块" Page="类别详细页面" ></app-navigation>
-    <section class="content">
-      <div style="_height:700px;min-height:700px;">
+    <section class="content" id ="content">
+      <div style="_height:100%;min-height:100%;">
         <select class="form-control" [(ngModel)]="comId"
         style="width:350px;border:1px solid ;" (ngModelChange)="onChange($event);" name="select1">
           <option [value]="c.indexcode" *ngFor="let c of comIdList">{{c.indexname}} -- {{c.indexcode}} -- {{c.isdel==0?'启用':'禁用'}} -- {{c.isdelandedit==0?'可编辑':'已锁定'}}</option>

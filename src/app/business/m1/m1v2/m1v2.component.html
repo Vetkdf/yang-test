@@ -4,8 +4,8 @@
   <div class="content-wrapper">
     <app-navigation Showtitle="Flexgrid第一个表格" Subtitle="开始表格" Web="站点"
     Module="M1模块" Page="Flexgrid第一个表格" ></app-navigation>
-    <section class="content">
-      <div style="_height:700px;min-height:700px;">
+    <section class="content" id="content">
+      <div style="_height:400px;min-height:400px;">
         <wj-flex-grid [itemsSource]="cvPaging" [itemFormatter]="itemFormatter">
 
           <wj-flex-grid-column [header]="'国家'" [binding]="'country'" [width]="'*'"></wj-flex-grid-column>

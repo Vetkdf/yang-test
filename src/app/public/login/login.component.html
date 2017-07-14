@@ -6,36 +6,46 @@
   <div class="login-box-body" style="border:9px solid #ADADAD;">
     <p class="login-box-msg"><b>登录系统</b></p>
 
-    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+    <form
+    #formRef="ngForm"
+    (ngSubmit)="onSubmit(formRef.value)"
+    class="show-form"
+    >
       <div class="form-group has-feedback">
-        <input type="text"
-        [(ngModel)]="username"
-        required
-        minlength="3"
-        #usernameRef="ngModel"
+        <input
+        type="text"
         name="username"
-        class="form-control" placeholder="用户名">
-        <span class="glyphicon glyphicon-envelope form-control-feedback">
-        </span>
+        class="form-control"
+        placeholder="用户名"
+        id="username"
+        required
+        [(ngModel)]="username"
+        [ngModel]="username"
+        (ngModelChange)="username = $event"
+        #name="ngModel"
+        #spy
+        >
       </div>
       <div class="form-group has-feedback">
-        <input type="password"
-        [(ngModel)]="password"
-        required
-        #passwordRef="ngModel"
+        <input
+        type="password"
         name="password"
         class="form-control"
-        placeholder="密码">
-        <span class="glyphicon glyphicon-lock form-control-feedback">
-
-        </span>
+        placeholder="密码"
+        id="password"
+        required
+        [(ngModel)]="password"
+        [ngModel]="password"
+        (ngModelChange)="password = $event"
+        #pass="ngModel"
+        >
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <div style="color:red" *ngIf="auth?.hasError"><b>
-              {{auth.errMsg}}</b></div>
-          </div>
+          <div  *ngIf="auth?.hasError" style="color:red"><b>{{auth.errMsg}}</b></div>
+          <div [hidden]="name.valid || name.pristine" style="color:red">用户名为空</div>
+          <div [hidden]="pass.valid || pass.pristine" style="color:red">密码为空</div>
+          <!-- class="alert alert-danger" -->
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

@@ -1,7 +1,11 @@
 <div class="modal fade" bsModal #childModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)" role="form" >
+        <form
+        #formRef="ngForm"
+        (ngSubmit)="onSubmit(formRef.value)"
+        role="form"
+        >
           <div class="modal-header">
             <h4 class="modal-title pull-left">{{ShowType}}{{Title}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
@@ -16,16 +20,24 @@
               class="form-control"
               placeholder=""
               [(ngModel)]="P.code"
-              name="text1">
+              name="code">
             </div>
 
             <div class="form-group">
               <label>子类名称</label>
-              <input type="text"
+              <input
+              type="text"
+              name="name"
               class="form-control"
               placeholder="请输入 ..."
+              id="name"
               [(ngModel)]="P.name"
-              name="text2">
+              [ngModel]="P.name"
+              (ngModelChange)="P.name = $event"
+              #name="ngModel"
+              required
+              >
+              <div [hidden]="name.valid || name.pristine" style="color:red">子类名称不可为空</div>
             </div>
 
             <!-- textarea -->
@@ -36,7 +48,7 @@
               rows="3"
               placeholder="请输入 ..."
               [(ngModel)]="P.remark"
-              name="textarea1">
+              name="remark">
             </textarea>
             </div>
 
@@ -44,15 +56,16 @@
               <label>排序ID</label>
               <input type="text"
               class="form-control"
-              placeholder="请输入数字 ...这里以后做检测，目前要是非数字会出错"
+              placeholder="请输入数字 ..."
               [(ngModel)]="P.orderid"
-              name="text3">
+              name="orderid"
+              (keydown)="onKeyPress($event)">
             </div>
 
             <div class="form-group">
               <label>应用状态</label>
-              <div class="radio" *ngFor="let t of typeList">
-                <label>
+              <div class="radio">
+                <label *ngFor="let t of typeList" class="radio-inline">
                   <input type="radio" name="radio" (change)="radio=t.id" [checked]="radio===t.id">{{t.name}}
                 </label>
               </div>

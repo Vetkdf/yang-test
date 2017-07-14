@@ -4,8 +4,8 @@
   <div class="content-wrapper">
     <app-navigation Showtitle="基础数据类别" Subtitle="设定基础数据类别" Web="站点"
     Module="M2模块" Page="基础数据类别" ></app-navigation>
-    <section class="content">
-      <div style="_height:700px;min-height:700px;">
+    <section class="content" id ="content">
+      <!--<div style="height:400px;">-->
         <wj-flex-grid #flexgrid1 [itemsSource]="cvPaging" auto-generate-columns="false" [itemFormatter]="itemFormatter">
           <wj-flex-grid-column [header]="''" [binding]="'check'" [width]="30"></wj-flex-grid-column>
           <wj-flex-grid-column [header]="'主键'" [binding]="'id'" [width]="60" [isReadOnly]="'true'"></wj-flex-grid-column>
@@ -14,7 +14,7 @@
                 <div style="text-align:center;"><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexcode}}</a></div>
             </ng-template>
           </wj-flex-grid-column>
-          <wj-flex-grid-column [header]="'选项名称'" [binding]="'indexname'" [width]="200">
+          <wj-flex-grid-column [header]="'大类名称'" [binding]="'indexname'" [width]="200">
             <ng-template wjFlexGridCellTemplate [cellType]="'Cell'"  let-cell="cell">
                 <div style="text-align:center;"><a [routerLink]="['/business/m2/m2v3',cell.item.indexcode]">{{cell.item.indexname}}</a></div>
             </ng-template>
@@ -44,7 +44,7 @@
           &nbsp;&nbsp;&nbsp;
         </div>
         <app-m2v2open #m2v2open Title="基础数据类别" (change)="bindpage(0)"></app-m2v2open>
-      </div>
+      <!--</div>-->
     </section>
   </div>
   <app-footer></app-footer>

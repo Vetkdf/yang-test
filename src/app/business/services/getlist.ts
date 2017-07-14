@@ -112,7 +112,6 @@ export class GetList {
                           //lastworkid: PBC[i].lastworkid,
                           //updatetime: PBC[i].updatetime,
                           orderid: PBC[i].orderid,
-                          //isdel: PBC[i].isdel === 0,//用这个会自动变成checkbox
                           isdel: PBC[i].isdel,
                           isdelandedit: PBC[i].isdelandedit,
                           //isdel: PBC[i].isdel === 0 ? '启用':'禁用',
@@ -154,47 +153,33 @@ export class GetList {
   //======================================================
 
   public Form_M2V2(postvalue:PageBackContent_M2V2,IsAdd:boolean): Promise<BackCode> {
-    let url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v2/`;
-    let body = postvalue;//这个可以
-    let headers = ConstantsList.headers;//spring的restful接口用这个
+    const url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v2/`;
+    let headers = ConstantsList.headers;
     let options = new RequestOptions({ headers: headers });
-    if(IsAdd){
-      return this.http.post(url, body, options)
-      .toPromise()
-      .then((res) => {
-          return res.json() as BackCode;
-      })
+    if(IsAdd) {
+      return this.http.post(url, postvalue, options).toPromise()
+      .then((res) => { return res.json() as BackCode; })
       .catch(this.handleError);
     }
-    else{
-      return this.http.put(url, body, options)
-      .toPromise()
-      .then((res) => {
-          return res.json() as BackCode;
-      })
+    else {
+      return this.http.put(url, postvalue, options).toPromise()
+      .then((res) => { return res.json() as BackCode; })
       .catch(this.handleError);
     }
   }
 
   public Form_M2V3(postvalue:PageBackContent_M2V3,IsAdd:boolean): Promise<BackCode> {
-    let url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v3/`;
-    let body = postvalue;//这个可以
-    let headers = ConstantsList.headers;//spring的restful接口用这个
+    const url = `${ConstantsList.HOSTUser}/yang-test/angular/form_m2v3/`;
+    let headers = ConstantsList.headers;
     let options = new RequestOptions({ headers: headers });
-    if(IsAdd){
-      return this.http.post(url, body, options)
-      .toPromise()
-      .then((res) => {
-          return res.json() as BackCode;
-      })
+    if(IsAdd) {
+      return this.http.post(url, postvalue, options).toPromise()
+      .then((res) => { return res.json() as BackCode; })
       .catch(this.handleError);
     }
-    else{
-      return this.http.put(url, body, options)
-      .toPromise()
-      .then((res) => {
-          return res.json() as BackCode;
-      })
+    else {
+      return this.http.put(url, postvalue, options).toPromise()
+      .then((res) => { return res.json() as BackCode; })
       .catch(this.handleError);
     }
   }

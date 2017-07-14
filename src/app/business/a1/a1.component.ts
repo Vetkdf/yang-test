@@ -1,5 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
+import ConstantsList from '../../common/constants/config';
 
+declare var $:any;
 @Component({
   selector: 'app-a1',
   templateUrl: './a1.component.html',
@@ -11,6 +13,9 @@ export class A1Component implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('主显示页面');
+    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);//min-height
+    //let ss:number = window.innerWidth();
+    //alert($window.innerHeight);
   }
 
 }

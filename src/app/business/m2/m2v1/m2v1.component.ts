@@ -4,8 +4,10 @@ import * as wjCore from 'wijmo/wijmo';
 //import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackList } from '../../../module/getlist';
+import ConstantsList from '../../../common/constants/config';
 'use strict';
 
+declare var $:any;
 @Component({
   selector: 'app-m2v1',
   templateUrl: './m2v1.component.html',
@@ -18,7 +20,7 @@ export class M2v1Component implements OnInit {
   pageNews:number[] = [];
   comId:number = 10;
   comIdList:number[] = [10,15,20,25,50,100];
-  
+
   constructor(@Inject(GetList) getList: GetList) {
     this.GetList = getList;
     this.bindpage(1);
@@ -32,6 +34,7 @@ export class M2v1Component implements OnInit {
   }
 
   ngOnInit() {
+    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);//min-height
   }
 
   itemFormatter(panel, r, c, cell) {

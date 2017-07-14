@@ -1,7 +1,12 @@
 <div class="modal fade" bsModal #childModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)" role="form" >
+        <form
+        #formRef="ngForm"
+        (ngSubmit)="onSubmit(formRef.value)"
+
+        class="show-form"
+        >
           <div class="modal-header">
             <h4 class="modal-title pull-left">{{ShowType}}{{Title}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
@@ -12,23 +17,33 @@
 
             <div class="form-group">
               <label>系统编码</label>
-              <input type="text" readonly
+              <input
+              type="text"
+              readonly
               class="form-control"
-              placeholder=""
               [(ngModel)]="P.indexcode"
-              name="text1">
+              name="indexcode"
+              >
             </div>
 
-            <div class="form-group">
-              <label>选项名称</label>
-              <input type="text"
+            <div class="form-group has-feedback">
+              <label>大类名称</label>
+              <input
+              type="text"
+              name="indexname"
               class="form-control"
-              placeholder="请输入 ..."
+              placeholder="请输入大类名称 ..."
+              id="indexname"
               [(ngModel)]="P.indexname"
-              name="text2">
+              [ngModel]="P.indexname"
+              (ngModelChange)="P.indexname = $event"
+              #indexname="ngModel"
+              required
+              >
+              <div [hidden]="indexname.valid || indexname.pristine" style="color:red">大类名称不可为空</div>
+
             </div>
 
-            <!-- textarea -->
             <div class="form-group">
               <label>备注信息</label>
               <textarea
@@ -36,22 +51,23 @@
               rows="3"
               placeholder="请输入 ..."
               [(ngModel)]="P.indexremark"
-              name="textarea1">
-            </textarea>
+              name="indexremark"
+              >
+              </textarea>
             </div>
 
             <div class="form-group">
               <label>应用状态</label>
-              <div class="radio" *ngFor="let t of typeList">
-                <label>
-                  <input type="radio" name="radio" (change)="radio=t.id" [checked]="radio===t.id">{{t.name}}
+              <div class="radio" >
+                <label *ngFor="let t of typeList" class="radio-inline">
+                  <input type="radio" name="isdel" (change)="isdel=t.id" [checked]="isdel===t.id">{{t.name}}
                 </label>
               </div>
             </div>
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideChildModal()">关闭</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="hideChildModal()">关闭</button>
             <button type="submit" class="btn btn-primary">提交</button>
           </div>
         </form>

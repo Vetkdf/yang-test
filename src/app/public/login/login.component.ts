@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Auth } from '../../module/entity';
 
 //declare var $:any;
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,26 +14,13 @@ import { Auth } from '../../module/entity';
 export class LoginComponent implements OnInit {
 
   auth: Auth;
-
-  //================
   username:string;
   password:string;
-  //================
 
   constructor(@Inject('auth') private service, private router: Router) {
   }
 
-  ngOnInit() {
-    /*
-    $(function () {
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%'
-      });
-    });
-    */
-  }
+  ngOnInit() { }
 
   onSubmit(formValue:any):void {
     this.service

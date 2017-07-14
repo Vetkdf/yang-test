@@ -17,17 +17,18 @@ export class M2v3openComponent implements OnInit {
   @ViewChild('childModal') public childModal:ModalDirective;
   @Input() Title: string = '表单模板页';
   @Output() change: EventEmitter<number> = new EventEmitter<number>();
-  text1:string;
-  text2:string;
-  textarea1:string;
-  ShowType:string = '编辑';
+
+  code:string;
+  name:string;
+  remark:string;
   radio:number = 0;
+
+  ShowType:string = '编辑';
   IsAdd:boolean = true;
   typeList:any = [
         {id: 0, name: '启用'},
         {id: 1, name: '禁用'},
   ];
-
   P:PageBackContent_M2V3 = new PageBackContent_M2V3();
   Post:PageBackContent_M2V3 = new PageBackContent_M2V3();
 
@@ -58,10 +59,7 @@ export class M2v3openComponent implements OnInit {
       this.P.remark = null;
       this.P.orderid = null;
       this.P.indexcode = code;
-      this.GetList.GetSequenceCode(0,1).
-        then(backobj =>{
-             this.P.code = backobj.toString();
-        });
+      this.GetList.GetSequenceCode(0,1).then(backobj =>{ this.P.code = backobj.toString(); });
     }
     else {
       this.ShowType = '编辑';
@@ -84,16 +82,23 @@ export class M2v3openComponent implements OnInit {
   }
 
   public onSubmit(formValue:any):void {
-
-    this.Post.code = formValue.text1;
-    this.Post.name = formValue.text2;
-    this.Post.remark = formValue.textarea1;
-    this.Post.orderid = formValue.text3;
-    this.Post.isdel = this.radio;
-    this.Post.indexcode = this.P.indexcode;
-    if(this.IsAdd==false) {
-      this.Post.id = this.P.id;
+    if(formValue.name.length == 0 || formValue.name == null)
+    {
+      return;
     }
+    this.Post.code = formValue.code;
+    this.Post.name = formValue.name;
+    this.Post.remark = formValue.remark;
+    try {
+      this.Post.orderid = <number>formValue.orderid;
+    }
+    catch (Exception){
+      this.Post.orderid = 0;
+    }
+    this.Post.isdel = this.radio;
+
+    this.Post.indexcode = this.P.indexcode;
+    if(this.IsAdd==false) this.Post.id = this.P.id;
 
     this.GetList.Form_M2V3(this.Post,this.IsAdd).then(
       ub => {
@@ -104,14 +109,25 @@ export class M2v3openComponent implements OnInit {
           this.hideChildModal();
         }
         else {
-          if(this.IsAdd){
+          if(this.IsAdd)
             alert('添加失败！');
-          }
-          else{
+          else
             alert('修改失败！');
-          }
         }
       }
     );
   }
+
+  onKeyPress(event:any) {
+  let keyCode=event.keyCode;
+  if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode == 46 )
+  {
+    event.returnValue = true;
+  }
+  else
+  {
+    event.returnValue = false;
+  }
+}
+
 }

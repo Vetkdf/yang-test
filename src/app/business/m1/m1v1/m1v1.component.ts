@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QmAngular,BackCode,NewsList } from '../../../module/formdata';
 import { PostService } from '../../services/post.service';
+import ConstantsList from '../../../common/constants/config';
 
+declare var $:any;
 @Component({
   selector: 'app-m1v1',
   templateUrl: './m1v1.component.html',
@@ -59,6 +61,7 @@ export class M1v1Component implements OnInit {
       this.comId = '1';
     },1000);
     //this.comId = '1';
+    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);//min-height
   }
 
   //==================================
@@ -121,5 +124,5 @@ export class M1v1Component implements OnInit {
       }
     );
   }
-  
+
 }

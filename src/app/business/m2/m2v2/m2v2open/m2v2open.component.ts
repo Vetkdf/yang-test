@@ -17,19 +17,15 @@ export class M2v2openComponent implements OnInit {
   @ViewChild('childModal') public childModal:ModalDirective;
   @Input() Title: string = '表单模板页';
   @Output() change: EventEmitter<number> = new EventEmitter<number>();
-  text1:string;
-  text2:string;
-  textarea1:string;
-  ShowType:string = '编辑';
-  radio:number = 0;
+  indexcode:string;
+  indexname:string;
+  indexremark:string;
+  isdel:number = 0;
   IsAdd:boolean = true;
+  ShowType:string = '编辑';
   typeList:any = [
         {id: 0, name: '启用'},
         {id: 1, name: '禁用'},
-  ];
-  typeList1:any = [
-        {id: 0, name: '可编辑'},
-        {id: 1, name: '已锁定'},
   ];
 
   P:PageBackContent_M2V2 = new PageBackContent_M2V2();
@@ -59,10 +55,7 @@ export class M2v2openComponent implements OnInit {
       this.P.isdel = null;
       this.P.isdelandedit = null;
       this.P.indexremark = null;
-      this.GetList.GetSequenceCode(1,1).
-        then(backobj =>{
-             this.P.indexcode = backobj.toString();
-        });
+      this.GetList.GetSequenceCode(1,1).then(backobj =>{ this.P.indexcode = backobj.toString(); });
     }
     else {
       this.ShowType = '编辑';
@@ -73,7 +66,7 @@ export class M2v2openComponent implements OnInit {
       this.P.isdelandedit = dataItem.isdelandedit;
       this.P.indexremark = dataItem.indexremark;
       this.IsAdd = false;
-      this.radio = this.P.isdel;
+      this.isdel = this.P.isdel;
     }
     this.childModal.show();
   }
@@ -83,30 +76,28 @@ export class M2v2openComponent implements OnInit {
   }
 
   public onSubmit(formValue:any):void {
-
-    this.Post.indexcode = formValue.text1;
-    this.Post.indexname = formValue.text2;
-    this.Post.indexremark = formValue.textarea1;
-    this.Post.isdel = this.radio;
-    if(this.IsAdd==false) {
-      this.Post.id = this.P.id;
+    if(formValue.indexname.length == 0 || formValue.indexname == null)
+    {
+      return;
     }
+    this.Post.indexcode = formValue.indexcode;
+    this.Post.indexname = formValue.indexname;
+    this.Post.indexremark = formValue.indexremark;
+    this.Post.isdel = this.isdel;
+    if(this.IsAdd==false) this.Post.id = this.P.id;
 
     this.GetList.Form_M2V2(this.Post,this.IsAdd).then(
       ub => {
-        //let show:string = '     服务端异常';
         if(ub.backCode == 1){
           if(this.IsAdd){ this.GetList.GetSequenceCode(1,0).then(backobj =>{ });}
           this.change.emit();
           this.hideChildModal();
         }
         else {
-          if(this.IsAdd){
+          if(this.IsAdd)
             alert('添加失败！');
-          }
-          else{
+          else
             alert('修改失败！');
-          }
         }
       }
     );

@@ -2,11 +2,13 @@ import { Component, OnInit, Inject,ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params }from'@angular/router';
 import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
-import * as wjInput from 'wijmo/wijmo.input';
+//import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackContent_M2V2 } from '../../../module/getlist';
 import { M2v3openComponent } from '../m2v3/m2v3open/m2v3open.component';
+import ConstantsList from '../../../common/constants/config';
 
+declare var $:any;
 @Component({
   selector: 'app-m2v3',
   templateUrl: './m2v3.component.html',
@@ -43,6 +45,7 @@ export class M2v3Component implements OnInit {
           });
           this.selectchange(this.comId);
       });
+      $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);
   }
 
   onChange(classId){
@@ -57,7 +60,7 @@ export class M2v3Component implements OnInit {
   //===================
 
   bindpage(event:number):void {
-    let pageindex :number = event;
+    let pageindex:number = event;
     if(pageindex == 0){ pageindex = this.pageNews[2];}
     this.GetList.GetListPageBy_M2V3(pageindex,this.comId).then(backobj =>{
       this.cvPaging.sourceCollection = backobj.List;
@@ -65,7 +68,7 @@ export class M2v3Component implements OnInit {
     });
   }
 
-  itemFormatter(panel, r, c, cell) { // r 是行， c 是列  都是从0 开始
+  itemFormatter(panel, r, c, cell) {
       if (panel.cellType === wjGrid.CellType.ColumnHeader) {
         cell.style.textAlign = 'center';
         if (panel.columns[c].binding === 'check') {
@@ -112,8 +115,8 @@ export class M2v3Component implements OnInit {
           case 'orderid':
           case 'button':
           {
+            /*
             switch(binding) {
-              /*
               case 'isdelandedit':
                 cell.style.color = cellData ==='已锁定' ? 'red':'green';
               break;
@@ -130,8 +133,8 @@ export class M2v3Component implements OnInit {
                   cell.innerHTML = '编辑'; //'<a href="javascript:void(0)"  disabled = "ture" >编辑</a>';
                 }
               break;
-              */
             }
+            */
             cell.style.textAlign = 'center';
           }
           break;

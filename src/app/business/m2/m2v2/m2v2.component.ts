@@ -8,6 +8,8 @@ import * as wjGrid from 'wijmo/wijmo.grid';
 
 //import { ModalformComponent } from '../../../common/component/modalform/modalform.component';
 import { M2v2openComponent } from './m2v2open/m2v2open.component';
+import ConstantsList from '../../../common/constants/config';
+//import  * as jquery  from '../../../common/constants/jquery';
 
 //import * as wj2Core from 'wijmo/wijmo.angular2.core';
 //import * as wj2Input from 'wijmo/wijmo.angular2.input';
@@ -16,7 +18,7 @@ import { M2v2openComponent } from './m2v2open/m2v2open.component';
 //import { WjGridModule } from 'wijmo/wijmo.angular2.grid';
 //import { WjInputModule } from 'wijmo/wijmo.angular2.input';
 //import { WjCoreModule } from 'wijmo/wijmo.angular2.core';
-
+declare var $:any;
 @Component({
   selector: 'app-m2v2',
   templateUrl: './m2v2.component.html',
@@ -27,7 +29,6 @@ export class M2v2Component  implements OnInit{
   private GetList: GetList;
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
   pageNews:number[] = [];
-
   @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
   @ViewChild('flexgrid1') public flexgrid1:wjGrid.FlexGrid;
 
@@ -37,7 +38,7 @@ export class M2v2Component  implements OnInit{
   }
 
   bindpage(event:number):void {
-    let pageindex :number = event;
+    let pageindex:number = event;
     if(pageindex == 0){ pageindex = this.pageNews[2];}
     this.GetList.GetListPageBy_M2V2(pageindex).then(backobj =>{
       this.cvPaging.sourceCollection = backobj.List;
@@ -47,6 +48,7 @@ export class M2v2Component  implements OnInit{
 
   ngOnInit() {
     this.flexgrid1.selectionMode = wjGrid.SelectionMode.Row;
+    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);
   }
 
   itemFormatter(panel, r, c, cell) {
@@ -131,8 +133,8 @@ export class M2v2Component  implements OnInit{
     if(flex.length == 1){
       inId = flex[0].dataItem.id;
       typeid = 1;
-      let isdelandedit:string = flex[0].dataItem.isdelandedit;
-      if(isdelandedit == '1') typeid = 2;
+      let isdelandedit:number = flex[0].dataItem.isdelandedit;
+      if(isdelandedit == 1) typeid = 2;
     }
     switch(typeid){
       case 0:
@@ -141,7 +143,6 @@ export class M2v2Component  implements OnInit{
       case 2:
         alert('选中行的主键是' + inId + '  但是本行状态位是已锁定，不可在编辑');
       break;
-      //case 2:
       case 1:
         //alert('选中行的主键是' + inId);
         this.m2v2open.showChildModal(flex[0].dataItem);
