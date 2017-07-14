@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import ConstantsList from '../../../common/constants/config';
+import { Auxiliary } from '../../../common/constants/auxiliary';
 
-declare var $:any;
 @Component({
   selector: 'app-m3v3',
   templateUrl: './m3v3.component.html',
@@ -12,7 +11,7 @@ export class M3v3Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);//min-height
+    Auxiliary.prototype.ControlHeight("#content");
   }
 
 }

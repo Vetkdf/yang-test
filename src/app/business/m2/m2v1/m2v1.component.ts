@@ -4,10 +4,9 @@ import * as wjCore from 'wijmo/wijmo';
 //import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackList } from '../../../module/getlist';
-import ConstantsList from '../../../common/constants/config';
+import { Auxiliary } from '../../../common/constants/auxiliary';
 'use strict';
 
-declare var $:any;
 @Component({
   selector: 'app-m2v1',
   templateUrl: './m2v1.component.html',
@@ -34,7 +33,7 @@ export class M2v1Component implements OnInit {
   }
 
   ngOnInit() {
-    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);//min-height
+    Auxiliary.prototype.ControlHeight("#content");
   }
 
   itemFormatter(panel, r, c, cell) {

@@ -8,9 +8,7 @@ import * as wjGrid from 'wijmo/wijmo.grid';
 
 //import { ModalformComponent } from '../../../common/component/modalform/modalform.component';
 import { M2v2openComponent } from './m2v2open/m2v2open.component';
-import ConstantsList from '../../../common/constants/config';
-//import  * as jquery  from '../../../common/constants/jquery';
-
+import { Auxiliary } from '../../../common/constants/auxiliary';
 //import * as wj2Core from 'wijmo/wijmo.angular2.core';
 //import * as wj2Input from 'wijmo/wijmo.angular2.input';
 //import * as wj2Grid from 'wijmo/wijmo.angular2.grid';
@@ -18,7 +16,8 @@ import ConstantsList from '../../../common/constants/config';
 //import { WjGridModule } from 'wijmo/wijmo.angular2.grid';
 //import { WjInputModule } from 'wijmo/wijmo.angular2.input';
 //import { WjCoreModule } from 'wijmo/wijmo.angular2.core';
-declare var $:any;
+
+
 @Component({
   selector: 'app-m2v2',
   templateUrl: './m2v2.component.html',
@@ -48,7 +47,7 @@ export class M2v2Component  implements OnInit{
 
   ngOnInit() {
     this.flexgrid1.selectionMode = wjGrid.SelectionMode.Row;
-    $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);
+    Auxiliary.prototype.ControlHeight("#content");
   }
 
   itemFormatter(panel, r, c, cell) {

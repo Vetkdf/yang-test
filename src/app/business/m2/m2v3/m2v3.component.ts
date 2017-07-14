@@ -6,9 +6,8 @@ import * as wjCore from 'wijmo/wijmo';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackContent_M2V2 } from '../../../module/getlist';
 import { M2v3openComponent } from '../m2v3/m2v3open/m2v3open.component';
-import ConstantsList from '../../../common/constants/config';
+import { Auxiliary } from '../../../common/constants/auxiliary';
 
-declare var $:any;
 @Component({
   selector: 'app-m2v3',
   templateUrl: './m2v3.component.html',
@@ -45,7 +44,7 @@ export class M2v3Component implements OnInit {
           });
           this.selectchange(this.comId);
       });
-      $("#content").css("min-height", $(window).height() - ConstantsList.pageHeight);
+      Auxiliary.prototype.ControlHeight("#content");
   }
 
   onChange(classId){
