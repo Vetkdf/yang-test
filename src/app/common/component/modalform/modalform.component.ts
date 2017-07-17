@@ -26,7 +26,6 @@ export class ModalformComponent implements OnInit {
 
   public onSubmit(formValue:any):void {
     alert(formValue.text1);
-
   }
 
 }

@@ -1,0 +1,10 @@
+.tableCell{
+  display:block;
+  text-align: center;
+  color: green;
+}
+.tableColumnHeader{
+  display:block;
+  text-align: center;
+  color: green;
+}

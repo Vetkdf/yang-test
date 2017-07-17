@@ -2,7 +2,6 @@ import { Component, OnInit, Inject,ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params }from'@angular/router';
 import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
-//import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
 import { PageBackContent_M2V2 } from '../../../module/getlist';
 import { M2v3openComponent } from '../m2v3/m2v3open/m2v3open.component';
@@ -107,7 +106,7 @@ export class M2v3Component implements OnInit {
         let binding = panel.columns[c].binding;
         switch(binding){
           case 'id':
-          case 'indexcode':
+          //case 'indexcode':
           case 'isdel':
           case 'isdelandedit':
           case 'code':
