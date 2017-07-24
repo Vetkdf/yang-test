@@ -51,8 +51,9 @@ export class M1v1Component implements OnInit {
 
   private postservice : PostService;
 
-  constructor(@Inject(PostService) postservice: PostService) {
+  constructor(@Inject(PostService) postservice: PostService,@Inject('title') private titleService) {
     this.postservice = postservice;
+    this.titleService.setTitle("表单和表单提交");
   }
 
   ngOnInit() {

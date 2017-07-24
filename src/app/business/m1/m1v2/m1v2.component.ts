@@ -16,10 +16,11 @@ export class M1v2Component implements OnInit {
   private dataSvc: DataSvc;
   cvPaging: wjCore.CollectionView;
 
-  constructor(@Inject(DataSvc) dataSvc: DataSvc) {
+  constructor(@Inject(DataSvc) dataSvc: DataSvc,@Inject('title') private titleService) {
     this.dataSvc = dataSvc;
     this.cvPaging = new wjCore.CollectionView(this.dataSvc.getData(100));
     this.cvPaging.pageSize = 10;
+    this.titleService.setTitle("flexgrid demo 表格");
    }
 
   ngOnInit() {

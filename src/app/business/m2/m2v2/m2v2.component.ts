@@ -31,9 +31,10 @@ export class M2v2Component  implements OnInit{
   @ViewChild('m2v2open') public m2v2open:M2v2openComponent;
   @ViewChild('flexgrid1') public flexgrid1:wjGrid.FlexGrid;
 
-  constructor(@Inject(GetList) getList: GetList) {
+  constructor(@Inject(GetList) getList: GetList,@Inject('title') private titleService) {
     this.GetList = getList;
     this.bindpage(1);
+    this.titleService.setTitle("基础数据类别");
   }
 
   bindpage(event:number):void {

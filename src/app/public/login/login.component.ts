@@ -1,6 +1,6 @@
 import { Component, OnInit ,Inject } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Auth } from '../../module/entity';
+import { Auth } from '../../module/login/entity';
 
 //declare var $:any;
 @Component({

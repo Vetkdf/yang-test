@@ -3,7 +3,7 @@ import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
 //import * as wjInput from 'wijmo/wijmo.input';
 import * as wjGrid from 'wijmo/wijmo.grid';
-import { PageBackList } from '../../../module/getlist';
+import { PageBackList } from '../../../module/business/getlist';
 import { Auxiliary } from '../../../common/constants/auxiliary';
 'use strict';
 
@@ -20,9 +20,10 @@ export class M2v1Component implements OnInit {
   comId:number = 10;
   comIdList:number[] = [10,15,20,25,50,100];
 
-  constructor(@Inject(GetList) getList: GetList) {
+  constructor(@Inject(GetList) getList: GetList,@Inject('title') private titleService) {
     this.GetList = getList;
     this.bindpage(1);
+    this.titleService.setTitle("获取远程数据列表");
   }
 
   bindpage(event:number):void {

@@ -11,7 +11,7 @@ export class A1Component implements OnInit {
   constructor(@Inject('title') private titleService) { }
 
   ngOnInit() {
-    this.titleService.setTitle('主显示页面');
+    this.titleService.setTitle('欢迎页面');
     Auxiliary.prototype.ControlHeight();
   }
 

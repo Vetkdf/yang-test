@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { Auxiliary } from '../../../common/constants/auxiliary';
 
 @Component({
@@ -8,7 +8,9 @@ import { Auxiliary } from '../../../common/constants/auxiliary';
 })
 export class M2v4Component implements OnInit {
 
-  constructor() { }
+  constructor(@Inject('title') private titleService) {
+    this.titleService.setTitle("M2V4页面");
+  }
 
   ngOnInit() {
     Auxiliary.prototype.ControlHeight();

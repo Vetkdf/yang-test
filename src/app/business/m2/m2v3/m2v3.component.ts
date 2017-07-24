@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, Params }from'@angular/router';
 import { GetList } from '../../services/getlist';
 import * as wjCore from 'wijmo/wijmo';
 import * as wjGrid from 'wijmo/wijmo.grid';
-import { PageBackContent_M2V2 } from '../../../module/getlist';
+import { PageBackContent_M2V2 } from '../../../module/business/getlist';
 import { M2v3openComponent } from '../m2v3/m2v3open/m2v3open.component';
 import { Auxiliary } from '../../../common/constants/auxiliary';
 
@@ -23,8 +23,9 @@ export class M2v3Component implements OnInit {
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
   pageNews:number[] = [];
 
-  constructor(@Inject(GetList) getList: GetList,private route: ActivatedRoute) {
+  constructor(@Inject(GetList) getList: GetList,private route: ActivatedRoute,@Inject('title') private titleService) {
     this.GetList = getList;
+    this.titleService.setTitle("类别详细页面");
   }
 
   ngOnInit() {
