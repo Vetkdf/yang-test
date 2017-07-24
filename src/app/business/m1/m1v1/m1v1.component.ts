@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { QmAngular,BackCode,NewsList } from '../../../module/formdata';
+import { QmAngular,BackCode,NewsList } from '../../../module/business/formdata';
 import { PostService } from '../../services/post.service';
 import { Auxiliary } from '../../../common/constants/auxiliary';
 
@@ -60,7 +60,7 @@ export class M1v1Component implements OnInit {
       this.comId = '1';
     },1000);
     //this.comId = '1';
-    Auxiliary.prototype.ControlHeight("#content");
+    Auxiliary.prototype.ControlHeight();
   }
 
   //==================================

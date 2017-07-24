@@ -4,7 +4,7 @@ import * as Modal from 'ngx-bootstrap/modal';
 import { ModalDirective,ModalModule,ModalOptions } from 'ngx-bootstrap/modal';
 import { GetList } from '../../../services/getlist';
 import { FormsModule } from '@angular/forms';
-import { PageBackContent_M2V3} from '../../../../module/getlist';
+import { PageBackContent_M2V3} from '../../../../module/business/getlist';
 
 @Component({
   selector: 'app-m2v3open',
@@ -90,7 +90,7 @@ export class M2v3openComponent implements OnInit {
     this.Post.name = formValue.name;
     this.Post.remark = formValue.remark;
     try {
-      this.Post.orderid = <number>formValue.orderid;      
+      this.Post.orderid = <number>formValue.orderid;
     }
     catch (Exception){
       this.Post.orderid = 0;

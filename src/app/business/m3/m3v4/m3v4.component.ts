@@ -11,7 +11,7 @@ export class M3v4Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    Auxiliary.prototype.ControlHeight("#content");
+    Auxiliary.prototype.ControlHeight();
   }
 
 }

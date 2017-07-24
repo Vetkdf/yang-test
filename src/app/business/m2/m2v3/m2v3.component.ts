@@ -43,7 +43,7 @@ export class M2v3Component implements OnInit {
           });
           this.selectchange(this.comId);
       });
-      Auxiliary.prototype.ControlHeight("#content");
+      Auxiliary.prototype.ControlHeight();
   }
 
   onChange(classId){

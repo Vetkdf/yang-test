@@ -23,7 +23,7 @@ export class M1v2Component implements OnInit {
    }
 
   ngOnInit() {
-    Auxiliary.prototype.ControlHeight("#content");
+    Auxiliary.prototype.ControlHeight();
   }
 
   itemFormatter = function (panel, r, c, cell) {

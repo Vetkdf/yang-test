@@ -12,7 +12,7 @@ export class A1Component implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('主显示页面');
-    Auxiliary.prototype.ControlHeight("#content");
+    Auxiliary.prototype.ControlHeight();
   }
 
 }

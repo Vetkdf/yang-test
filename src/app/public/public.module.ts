@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { AuthService } from './services/auth.service';
 import { PublicRoutingModule } from './public.routing.module';
 
 import { LoginComponent } from './login/login.component';
-import { PublicComponent } from './public.component';
 import { TopComponent } from './top/top.component';
 import { TreeviewComponent } from './treeview/treeview.component';
 import { FooterComponent } from './footer/footer.component';
@@ -21,7 +21,6 @@ import { PagingComponent } from './paging/paging.component';
   ],
   declarations: [
     LoginComponent,
-    PublicComponent,
     TopComponent,
     TreeviewComponent,
     FooterComponent,
@@ -35,5 +34,8 @@ import { PagingComponent } from './paging/paging.component';
     NavigationComponent,
     PagingComponent,
     ],
+    providers: [
+    { provide: 'auth', useClass: AuthService },
+    ]
 })
 export class PublicModule { }

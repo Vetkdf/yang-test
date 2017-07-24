@@ -47,7 +47,7 @@ export class M2v2Component  implements OnInit{
 
   ngOnInit() {
     this.flexgrid1.selectionMode = wjGrid.SelectionMode.Row;
-    Auxiliary.prototype.ControlHeight("#content");
+    Auxiliary.prototype.ControlHeight();
   }
 
   itemFormatter(panel, r, c, cell) {

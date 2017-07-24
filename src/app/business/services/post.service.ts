@@ -2,31 +2,27 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import ConstantsList from '../../common/constants/config';
-import { QmAngular,BackCode } from '../../module/formdata';
+import { QmAngular,BackCode } from '../../module/business/formdata';
+import { BaseService } from '../../common/services/base.service';
 
 @Injectable()
-export class PostService {
+export class PostService extends BaseService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    super();
+    this.servicename = 'PostService-表单提交服务';
+  }
 
   AddForm(postvalue: string): Promise<BackCode> {
     let url = `${ConstantsList.HOSTUser}AddForm.ashx`;
-
-    //let body = JSON.stringify(postvalue);
-    let body = postvalue;
-
+    let body = postvalue; //let body = JSON.stringify(postvalue);
     //let headers = ConstantsList.headers;
     //let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' });
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
-
     let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(url, body, options)
-    .toPromise().
-    then((res) => {
-        return res.json() as BackCode;
-    })
-    .catch(this.handleError);
+    return this.http.post(url, body, options).toPromise().
+    then((res) => { return res.json() as BackCode;})
+    .catch((error: any) => {this.handleError('AddForm',error);});
   }
 
   AddFormSSM(postvalue: QmAngular): Promise<BackCode> {
@@ -37,18 +33,10 @@ export class PostService {
     // ashx后台页面用这个
     //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
     let options = new RequestOptions({ headers: headers });
-
     return this.http.post(url, body, options)
     .toPromise()
-    .then((res) => {
-        return res.json() as BackCode;
-    })
-    .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    .then((res) => { return res.json() as BackCode;})
+    .catch((error: any) => {this.handleError('AddFormSSM',error);});
   }
 
 }
