@@ -1,0 +1,13 @@
+#container {
+    width: 700px;
+    height: 350px;
+    background-color: #ccc;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+path{
+    fill: none;
+    stroke: cornflowerblue;
+    stroke-width: 2px;
+}
