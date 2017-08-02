@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { HashLocationStrategy,LocationStrategy} from '@angular/common';
 import { CommonFunctionModule } from './common/common.function.module';
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
   ],
