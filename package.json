@@ -12,17 +12,17 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.1.2",
-    "@angular/common": "^4.1.2",
-    "@angular/compiler": "^4.1.2",
-    "@angular/compiler-cli": "^4.1.2",
-    "@angular/core": "^4.1.2",
-    "@angular/forms": "^4.1.2",
-    "@angular/http": "^4.1.2",
-    "@angular/platform-browser": "^4.1.2",
-    "@angular/platform-browser-dynamic": "^4.1.2",
-    "@angular/platform-server": "^4.1.2",
-    "@angular/router": "^4.1.2",
+    "@angular/animations": "^4.3.4",
+    "@angular/common": "^4.3.4",
+    "@angular/compiler": "^4.3.4",
+    "@angular/compiler-cli": "^4.3.4",
+    "@angular/core": "^4.3.4",
+    "@angular/forms": "^4.3.4",
+    "@angular/http": "^4.3.4",
+    "@angular/platform-browser": "^4.3.4",
+    "@angular/platform-browser-dynamic": "^4.3.4",
+    "@angular/platform-server": "^4.3.4",
+    "@angular/router": "^4.3.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.22",
     "admin-lte": "^2.3.11",
     "bootstrap": "^3.3.7",
@@ -30,8 +30,8 @@
     "d3": "^4.10.0",
     "jquery": "^3.2.1",
     "ngx-bootstrap": "^1.7.1",
-    "rxjs": "^5.1.0",
-    "typescript": "^2.3.4",
+    "rxjs": "^5.4.2",
+    "typescript": "^2.4.2",
     "webpack": "^3.0.0",
     "wijmo": "http://prerelease.componentone.com/wijmo5/npm-images/C1Wijmo-Enterprise-Eval-AMD-5.20171.293.tgz",
     "zone.js": "^0.8.12"
@@ -57,6 +57,6 @@
     "rollup-plugin-uglify": "^1.0.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.3.4"
+    "typescript": "~2.4.2"
   }
 }

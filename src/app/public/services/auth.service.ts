@@ -42,7 +42,7 @@ export class AuthService extends BaseService {
         }
         return auth;
       })
-      .catch((error: any) => {this.handleError('loginWithCredentials',error);});
+      .catch((error: any) => {return this.handleError('loginWithCredentials',error);});
   }
 
   private findUserBySSM(username: string,password:string): Promise<BackNewsCode> {
@@ -61,6 +61,6 @@ export class AuthService extends BaseService {
                   return backCode;
                 }
               })
-              .catch((error: any) => {this.handleError('findUserBySSM',error);});
+              .catch((error: any) => {return this.handleError('findUserBySSM',error);});
   }
 }

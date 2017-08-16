@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response ,RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
 import { PageBackList,Wijmo_PageBackList,PageBackContentSSM, PageBackContent_M2V2,PageBackContent_M2V3,BackNews} from '../../module/business/getlist';
 import ConstantsList from '../../common/constants/config';
 import * as wjcCore from 'wijmo/wijmo';
@@ -43,7 +44,7 @@ export class GetList extends BaseService {
                   return null;
                 }
               })
-              .catch((error: any) => {this.handleError('GetListPageBySSM',error);});
+              .catch((error: any) => {return this.handleError('GetListPageBySSM',error);});
   }
 
   public GetListPageBy_M2V2(PageIndex:number): Promise<Wijmo_PageBackList>{
@@ -80,7 +81,7 @@ export class GetList extends BaseService {
                   return null;
                 }
               })
-              .catch((error: any) => {this.handleError('GetListPageBy_M2V2',error);});
+              .catch((error: any) => { return this.handleError('GetListPageBy_M2V2',error);});
   }
 
   public GetListPageBy_M2V3_List(): Promise<PageBackContent_M2V2[]>{
@@ -88,7 +89,7 @@ export class GetList extends BaseService {
     return this.http.get(url)
               .toPromise()
               .then(res => {  return res.json() as PageBackContent_M2V2[]; })
-              .catch((error: any) => {this.handleError('GetListPageBy_M2V3_List',error);});
+              .catch((error: any) => {return this.handleError('GetListPageBy_M2V3_List',error);});
   }
 
   public GetListPageBy_M2V3(PageIndex:number,Type:string): Promise<Wijmo_PageBackList>{
@@ -131,7 +132,7 @@ export class GetList extends BaseService {
                   return null;
                 }
               })
-              .catch((error: any) => {this.handleError('GetListPageBy_M2V3',error);});
+              .catch((error: any) => {return this.handleError('GetListPageBy_M2V3',error);});
   }
 
   //======================================================
@@ -151,7 +152,7 @@ export class GetList extends BaseService {
                   return null;
                 }
               })
-              .catch((error: any) => {this.handleError('GetSequenceCode',error);});
+              .catch((error: any) => {return this.handleError('GetSequenceCode',error);});
   }
 
   //======================================================
@@ -163,12 +164,12 @@ export class GetList extends BaseService {
     if(IsAdd) {
       return this.http.post(url, postvalue, options).toPromise()
       .then((res) => { return res.json() as BackCode; })
-      .catch((error: any) => {this.handleError('Form_M2V2',error);});
+      .catch((error: any) => {return this.handleError('Form_M2V2',error);});
     }
     else {
       return this.http.put(url, postvalue, options).toPromise()
       .then((res) => { return res.json() as BackCode; })
-      .catch((error: any) => {this.handleError('Form_M2V2',error);});
+      .catch((error: any) => {return this.handleError('Form_M2V2',error);});
     }
   }
 
@@ -179,13 +180,14 @@ export class GetList extends BaseService {
     if(IsAdd) {
       return this.http.post(url, postvalue, options).toPromise()
       .then((res) => { return res.json() as BackCode; })
-      .catch((error: any) => {this.handleError('Form_M2V3',error);});
+      .catch((error: any) => {return this.handleError('Form_M2V3',error);});
     }
     else {
       return this.http.put(url, postvalue, options).toPromise()
       .then((res) => { return res.json() as BackCode; })
-      .catch((error: any) => {this.handleError('Form_M2V3',error);});
+      .catch((error: any) => {return this.handleError('Form_M2V3',error);});
     }
   }
+
 
 }

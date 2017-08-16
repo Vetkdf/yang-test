@@ -20,9 +20,8 @@ export class PostService extends BaseService {
     //let headers = new Headers({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' });
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(url, body, options).toPromise().
-    then((res) => { return res.json() as BackCode;})
-    .catch((error: any) => {this.handleError('AddForm',error);});
+    return this.http.post(url, body, options).toPromise().then((res) => { return res.json() as BackCode;})
+    .catch((error: any) => { return this.handleError('AddForm',error);});
   }
 
   AddFormSSM(postvalue: QmAngular): Promise<BackCode> {
@@ -36,7 +35,7 @@ export class PostService extends BaseService {
     return this.http.post(url, body, options)
     .toPromise()
     .then((res) => { return res.json() as BackCode;})
-    .catch((error: any) => {this.handleError('AddFormSSM',error);});
+    .catch((error: any) => {return this.handleError('AddFormSSM',error);});
   }
 
 }
