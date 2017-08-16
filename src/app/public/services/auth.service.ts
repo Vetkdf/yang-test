@@ -9,7 +9,7 @@ import { BaseService } from '../../common/services/base.service';
 @Injectable()
 export class AuthService extends BaseService {
 
-  //constructor(private http: Http,@Inject('user') private userService) {
+  //constructor(private http: Http,@Inject('user') private userService) { 
   constructor(private http: Http) {
     super();
     this.servicename = 'AuthService-用户服务';
