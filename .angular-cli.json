@@ -26,11 +26,12 @@
         "styles.css"
       ],
       "scripts": [
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
         "../node_modules/admin-lte/plugins/knob/jquery.knob.js",
         "../node_modules/admin-lte/plugins/sparkline/jquery.sparkline.min.js",
-        "../node_modules/admin-lte/dist/js/app.min.js"
+        "../node_modules/admin-lte/dist/js/app.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
