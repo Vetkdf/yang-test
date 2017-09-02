@@ -21,4 +21,4 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ModalService,
   ]
 })
-export class CommonFunctionModule {}
+export class CommonFunctionModule { }

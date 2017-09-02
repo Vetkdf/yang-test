@@ -60,6 +60,23 @@
           <li [ngClass]="{'active':check == 'M3V7'}"><a routerLink="/business/m3/m3v7"><i class="fa fa-circle-o"></i>选项 V7</a></li>
         </ul>
       </li>
+
+      <li class="treeview" [ngClass]="{'active':treemodule == 'business_system'}">
+        <a href="#">
+          <i class="fa fa-pie-chart"></i>
+          <span>系统管理模块</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [ngClass]="{'active':check == 'M3V1'}"><a routerLink="/business_system/module"><i class="fa fa-circle-o"></i>模块管理</a></li>
+          <li [ngClass]="{'active':check == 'M3V2'}"><a routerLink="/business_system/page"><i class="fa fa-circle-o"></i>页面管理</a></li>
+          <li [ngClass]="{'active':check == 'M3V3'}"><a routerLink="/business_system/usergroup"><i class="fa fa-circle-o"></i>用户组管理</a></li>
+          <li [ngClass]="{'active':check == 'M3V4'}"><a routerLink="/business_system/userinfo"><i class="fa fa-circle-o"></i>系统用户管理</a></li>
+        </ul>
+      </li>
+      
     </ul>
   </section>
 </aside>
